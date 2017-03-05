@@ -3,7 +3,7 @@
 
 int main()
 {
-  typedef itk::Image< unsigned short, 3 > ImageType;
+  typedef itk::Image<unsigned short, 3> ImageType;
 
   ImageType::Pointer image = ImageType::New();
 
