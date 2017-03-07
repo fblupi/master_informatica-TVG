@@ -21,10 +21,10 @@ CMAKE_BACKWARDS_COMPATIBILITY:STRING=2.4
 //Semicolon separated list of supported configuration types, only
 // supports Debug, Release, MinSizeRel, and RelWithDebInfo, anything
 // else will be ignored.
-CMAKE_CONFIGURATION_TYPES:STRING=Debug;Release;MinSizeRel;RelWithDebInfo
+CMAKE_CONFIGURATION_TYPES:STRING=Release
 
 //Flags used by the compiler during all build types.
-CMAKE_CXX_FLAGS:STRING= /DWIN32 /D_WINDOWS /W3 /GR /EHsc
+CMAKE_CXX_FLAGS:STRING=/DWIN32 /D_WINDOWS /W3 /GR /EHsc
 
 //Flags used by the compiler during debug builds.
 CMAKE_CXX_FLAGS_DEBUG:STRING=/D_DEBUG /MDd /Zi /Ob0 /Od /RTC1
@@ -43,7 +43,7 @@ CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=/MD /Zi /O2 /Ob1 /DNDEBUG
 CMAKE_CXX_STANDARD_LIBRARIES:STRING=kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
 
 //Flags used by the compiler during all build types.
-CMAKE_C_FLAGS:STRING= /DWIN32 /D_WINDOWS /W3
+CMAKE_C_FLAGS:STRING=/DWIN32 /D_WINDOWS /W3
 
 //Flags used by the compiler during debug builds.
 CMAKE_C_FLAGS_DEBUG:STRING=/D_DEBUG /MDd /Zi /Ob0 /Od /RTC1
@@ -62,7 +62,7 @@ CMAKE_C_FLAGS_RELWITHDEBINFO:STRING=/MD /Zi /O2 /Ob1 /DNDEBUG
 CMAKE_C_STANDARD_LIBRARIES:STRING=kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
 
 //Flags used by the linker.
-CMAKE_EXE_LINKER_FLAGS:STRING= /machine:X86
+CMAKE_EXE_LINKER_FLAGS:STRING=/machine:X86
 
 //Flags used by the linker during debug builds.
 CMAKE_EXE_LINKER_FLAGS_DEBUG:STRING=/debug /INCREMENTAL
@@ -77,13 +77,13 @@ CMAKE_EXE_LINKER_FLAGS_RELEASE:STRING=/INCREMENTAL:NO
 CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=/debug /INCREMENTAL
 
 //Install path prefix, prepended onto install directories.
-CMAKE_INSTALL_PREFIX:PATH=C:/Program Files (x86)/HelloWorld
+CMAKE_INSTALL_PREFIX:PATH=C:/Program Files (x86)/task1
 
 //Path to a program.
 CMAKE_LINKER:FILEPATH=C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/bin/link.exe
 
 //Flags used by the linker during the creation of modules.
-CMAKE_MODULE_LINKER_FLAGS:STRING= /machine:X86
+CMAKE_MODULE_LINKER_FLAGS:STRING=/machine:X86
 
 //Flags used by the linker during debug builds.
 CMAKE_MODULE_LINKER_FLAGS_DEBUG:STRING=/debug /INCREMENTAL
@@ -98,16 +98,16 @@ CMAKE_MODULE_LINKER_FLAGS_RELEASE:STRING=/INCREMENTAL:NO
 CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO:STRING=/debug /INCREMENTAL
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=HelloWorld
+CMAKE_PROJECT_NAME:STATIC=task1
 
 //RC compiler
 CMAKE_RC_COMPILER:FILEPATH=rc
 
 //Flags for Windows Resource Compiler.
-CMAKE_RC_FLAGS:STRING=' /DWIN32 '
+CMAKE_RC_FLAGS:STRING=/DWIN32
 
 //Flags used by the linker during the creation of dll's.
-CMAKE_SHARED_LINKER_FLAGS:STRING= /machine:X86
+CMAKE_SHARED_LINKER_FLAGS:STRING=/machine:X86
 
 //Flags used by the linker during debug builds.
 CMAKE_SHARED_LINKER_FLAGS_DEBUG:STRING=/debug /INCREMENTAL
@@ -129,7 +129,7 @@ CMAKE_SKIP_INSTALL_RPATH:BOOL=OFF
 CMAKE_SKIP_RPATH:BOOL=OFF
 
 //Flags used by the linker during the creation of static libraries.
-CMAKE_STATIC_LINKER_FLAGS:STRING= /machine:X86
+CMAKE_STATIC_LINKER_FLAGS:STRING=/machine:X86
 
 //Flags used by the linker during debug builds.
 CMAKE_STATIC_LINKER_FLAGS_DEBUG:STRING=
@@ -152,23 +152,32 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=OFF
 //Single output directory for building all executables.
 EXECUTABLE_OUTPUT_PATH:PATH=
 
-//Value Computed by CMake
-HelloWorld_BINARY_DIR:STATIC=C:/Users/fboli/Documents/GitHub/master_informatica-TVG/script1/task1
-
-//Value Computed by CMake
-HelloWorld_SOURCE_DIR:STATIC=C:/Users/fboli/Documents/GitHub/master_informatica-TVG/script1/task1/src
-
 //The directory containing a CMake configuration file for ITK.
-ITK_DIR:PATH=C:/ITK/4.10.1/build
+ITK_DIR:PATH=C:/ITK/4.11.0/build
 
 //Single output directory for building all libraries.
 LIBRARY_OUTPUT_PATH:PATH=
 
 //The directory containing a CMake configuration file for Qt5Core.
-Qt5Core_DIR:PATH=C:/Qt/Qt5.7.0/5.7/msvc2015/lib/cmake/Qt5Core
+Qt5Core_DIR:PATH=C:/Qt/Qt5.8.0/5.8/msvc2015/lib/cmake/Qt5Core
 
 //The directory containing a CMake configuration file for Qt5Gui.
-Qt5Gui_DIR:PATH=C:/Qt/Qt5.7.0/5.7/msvc2015/lib/cmake/Qt5Gui
+Qt5Gui_DIR:PATH=C:/Qt/Qt5.8.0/5.8/msvc2015/lib/cmake/Qt5Gui
+
+//The directory containing a CMake configuration file for Qt5OpenGL.
+Qt5OpenGL_DIR:PATH=C:/Qt/Qt5.8.0/5.8/msvc2015/lib/cmake/Qt5OpenGL
+
+//The directory containing a CMake configuration file for Qt5Sql.
+Qt5Sql_DIR:PATH=C:/Qt/Qt5.8.0/5.8/msvc2015/lib/cmake/Qt5Sql
+
+//The directory containing a CMake configuration file for Qt5Widgets.
+Qt5Widgets_DIR:PATH=C:/Qt/Qt5.8.0/5.8/msvc2015/lib/cmake/Qt5Widgets
+
+//Value Computed by CMake
+task1_BINARY_DIR:STATIC=C:/Users/fboli/Documents/GitHub/master_informatica-TVG/script1/task1
+
+//Value Computed by CMake
+task1_SOURCE_DIR:STATIC=C:/Users/fboli/Documents/GitHub/master_informatica-TVG/script1/task1/src
 
 
 ########################
@@ -180,9 +189,9 @@ CMAKE_CACHEFILE_DIR:INTERNAL=c:/Users/fboli/Documents/GitHub/master_informatica-
 //Major version of cmake used to create the current loaded cache
 CMAKE_CACHE_MAJOR_VERSION:INTERNAL=3
 //Minor version of cmake used to create the current loaded cache
-CMAKE_CACHE_MINOR_VERSION:INTERNAL=6
+CMAKE_CACHE_MINOR_VERSION:INTERNAL=7
 //Patch version of cmake used to create the current loaded cache
-CMAKE_CACHE_PATCH_VERSION:INTERNAL=1
+CMAKE_CACHE_PATCH_VERSION:INTERNAL=2
 //Path to CMake executable.
 CMAKE_COMMAND:INTERNAL=C:/Program Files/CMake/bin/cmake.exe
 //Path to cpack program executable.
@@ -256,7 +265,7 @@ CMAKE_RC_COMPILER_WORKS:INTERNAL=1
 //ADVANCED property for variable: CMAKE_RC_FLAGS
 CMAKE_RC_FLAGS-ADVANCED:INTERNAL=1
 //Path to CMake installation.
-CMAKE_ROOT:INTERNAL=C:/Program Files/CMake/share/cmake-3.6
+CMAKE_ROOT:INTERNAL=C:/Program Files/CMake/share/cmake-3.7
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS
 CMAKE_SHARED_LINKER_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS_DEBUG

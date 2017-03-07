@@ -1,8 +1,8 @@
-project(HelloWorld)
+project(task1)
 
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
 
-add_executable(HelloWorld HelloWorld.cxx)
+add_executable(task1 task1.cxx)
 
-target_link_libraries(HelloWorld ${ITK_LIBRARIES})
+target_link_libraries(task1 ${ITK_LIBRARIES})

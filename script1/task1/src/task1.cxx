@@ -1,13 +1,15 @@
 #include "itkImage.h"
 #include <iostream>
 
+unsing namespace std;
+
 int main()
 {
   typedef itk::Image<unsigned short, 3> ImageType;
 
   ImageType::Pointer image = ImageType::New();
 
-  std::cout << "ITK Hello World !" << std::endl;
+  cout << "ITK Hello World!" << endl;
 
   return EXIT_SUCCESS;
 }
