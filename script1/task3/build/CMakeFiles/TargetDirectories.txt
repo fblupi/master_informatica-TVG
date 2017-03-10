@@ -1,0 +1,3 @@
+C:/Users/fboli/Documents/GitHub/master_informatica-TVG/script1/task3/build/CMakeFiles/getInfo.dir
+C:/Users/fboli/Documents/GitHub/master_informatica-TVG/script1/task3/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/fboli/Documents/GitHub/master_informatica-TVG/script1/task3/build/CMakeFiles/ZERO_CHECK.dir

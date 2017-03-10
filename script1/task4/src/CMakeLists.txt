@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 
-project(getInfo)
+project(iterators)
 
 find_package(ITK REQUIRED)
 include(${ITK_USE_FILE})
@@ -22,6 +22,6 @@ else()
 endif()
 
 
-add_executable(getInfo getInfo.cpp)
+add_executable(iterators iterators.cpp)
 
-target_link_libraries(getInfo ${Glue} ${VTK_LIBRARIES} ${ITK_LIBRARIES})
+target_link_libraries(iterators ${Glue} ${VTK_LIBRARIES} ${ITK_LIBRARIES})
