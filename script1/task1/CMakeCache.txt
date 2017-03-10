@@ -21,7 +21,7 @@ CMAKE_BACKWARDS_COMPATIBILITY:STRING=2.4
 //Semicolon separated list of supported configuration types, only
 // supports Debug, Release, MinSizeRel, and RelWithDebInfo, anything
 // else will be ignored.
-CMAKE_CONFIGURATION_TYPES:STRING=Release
+CMAKE_CONFIGURATION_TYPES:STRING=Debug;Release;MinSizeRel;RelWithDebInfo
 
 //Flags used by the compiler during all build types.
 CMAKE_CXX_FLAGS:STRING=/DWIN32 /D_WINDOWS /W3 /GR /EHsc
@@ -62,7 +62,7 @@ CMAKE_C_FLAGS_RELWITHDEBINFO:STRING=/MD /Zi /O2 /Ob1 /DNDEBUG
 CMAKE_C_STANDARD_LIBRARIES:STRING=kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
 
 //Flags used by the linker.
-CMAKE_EXE_LINKER_FLAGS:STRING=/machine:X86
+CMAKE_EXE_LINKER_FLAGS:STRING=/machine:x64
 
 //Flags used by the linker during debug builds.
 CMAKE_EXE_LINKER_FLAGS_DEBUG:STRING=/debug /INCREMENTAL
@@ -77,13 +77,13 @@ CMAKE_EXE_LINKER_FLAGS_RELEASE:STRING=/INCREMENTAL:NO
 CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=/debug /INCREMENTAL
 
 //Install path prefix, prepended onto install directories.
-CMAKE_INSTALL_PREFIX:PATH=C:/Program Files (x86)/task1
+CMAKE_INSTALL_PREFIX:PATH=C:/Program Files/task1
 
 //Path to a program.
-CMAKE_LINKER:FILEPATH=C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/bin/link.exe
+CMAKE_LINKER:FILEPATH=C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/bin/x86_amd64/link.exe
 
 //Flags used by the linker during the creation of modules.
-CMAKE_MODULE_LINKER_FLAGS:STRING=/machine:X86
+CMAKE_MODULE_LINKER_FLAGS:STRING=/machine:x64
 
 //Flags used by the linker during debug builds.
 CMAKE_MODULE_LINKER_FLAGS_DEBUG:STRING=/debug /INCREMENTAL
@@ -107,7 +107,7 @@ CMAKE_RC_COMPILER:FILEPATH=rc
 CMAKE_RC_FLAGS:STRING=/DWIN32
 
 //Flags used by the linker during the creation of dll's.
-CMAKE_SHARED_LINKER_FLAGS:STRING=/machine:X86
+CMAKE_SHARED_LINKER_FLAGS:STRING=/machine:x64
 
 //Flags used by the linker during debug builds.
 CMAKE_SHARED_LINKER_FLAGS_DEBUG:STRING=/debug /INCREMENTAL
@@ -129,7 +129,7 @@ CMAKE_SKIP_INSTALL_RPATH:BOOL=OFF
 CMAKE_SKIP_RPATH:BOOL=OFF
 
 //Flags used by the linker during the creation of static libraries.
-CMAKE_STATIC_LINKER_FLAGS:STRING=/machine:X86
+CMAKE_STATIC_LINKER_FLAGS:STRING=/machine:x64
 
 //Flags used by the linker during debug builds.
 CMAKE_STATIC_LINKER_FLAGS_DEBUG:STRING=
@@ -153,25 +153,25 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=OFF
 EXECUTABLE_OUTPUT_PATH:PATH=
 
 //The directory containing a CMake configuration file for ITK.
-ITK_DIR:PATH=C:/ITK/4.11.0/build
+ITK_DIR:PATH=C:/ITK/4.11.0/build/msvc2015_64
 
 //Single output directory for building all libraries.
 LIBRARY_OUTPUT_PATH:PATH=
 
 //The directory containing a CMake configuration file for Qt5Core.
-Qt5Core_DIR:PATH=C:/Qt/Qt5.8.0/5.8/msvc2015/lib/cmake/Qt5Core
+Qt5Core_DIR:PATH=C:/Qt/Qt5.8.0/5.8/msvc2015_64/lib/cmake/Qt5Core
 
 //The directory containing a CMake configuration file for Qt5Gui.
-Qt5Gui_DIR:PATH=C:/Qt/Qt5.8.0/5.8/msvc2015/lib/cmake/Qt5Gui
+Qt5Gui_DIR:PATH=C:/Qt/Qt5.8.0/5.8/msvc2015_64/lib/cmake/Qt5Gui
 
 //The directory containing a CMake configuration file for Qt5OpenGL.
-Qt5OpenGL_DIR:PATH=C:/Qt/Qt5.8.0/5.8/msvc2015/lib/cmake/Qt5OpenGL
+Qt5OpenGL_DIR:PATH=C:/Qt/Qt5.8.0/5.8/msvc2015_64/lib/cmake/Qt5OpenGL
 
 //The directory containing a CMake configuration file for Qt5Sql.
-Qt5Sql_DIR:PATH=C:/Qt/Qt5.8.0/5.8/msvc2015/lib/cmake/Qt5Sql
+Qt5Sql_DIR:PATH=C:/Qt/Qt5.8.0/5.8/msvc2015_64/lib/cmake/Qt5Sql
 
 //The directory containing a CMake configuration file for Qt5Widgets.
-Qt5Widgets_DIR:PATH=C:/Qt/Qt5.8.0/5.8/msvc2015/lib/cmake/Qt5Widgets
+Qt5Widgets_DIR:PATH=C:/Qt/Qt5.8.0/5.8/msvc2015_64/lib/cmake/Qt5Widgets
 
 //Value Computed by CMake
 task1_BINARY_DIR:STATIC=C:/Users/fboli/Documents/GitHub/master_informatica-TVG/script1/task1
@@ -237,7 +237,7 @@ CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //Name of external makefile project generator.
 CMAKE_EXTRA_GENERATOR:INTERNAL=
 //Name of generator.
-CMAKE_GENERATOR:INTERNAL=Visual Studio 14 2015
+CMAKE_GENERATOR:INTERNAL=Visual Studio 14 2015 Win64
 //Name of generator platform.
 CMAKE_GENERATOR_PLATFORM:INTERNAL=
 //Name of generator toolset.

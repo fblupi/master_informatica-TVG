@@ -67,5 +67,5 @@ int main(int, char *[])
 		std::cout << inputValue << "\t" << outputValue << std::endl;
 	}
 
-	return 0;
+	return EXIT_SUCCESS;
 }
