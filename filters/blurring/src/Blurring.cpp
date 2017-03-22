@@ -1,6 +1,7 @@
 #include "itkImage.h"
 #include "itkImageFileReader.h"
 #include "itkDiscreteGaussianImageFilter.h"
+#include "itkBinomialBlurImageFilter.h"
 
 #include "QuickView.h"
 
@@ -24,18 +25,25 @@ int main(int argc, char * argv[])
 	ReaderType::Pointer reader = ReaderType::New();
 	reader->SetFileName(argv[1]);
 
-	typedef itk::DiscreteGaussianImageFilter<ImageType, ImageType> DiscreteGaussianImageFilter;
+	typedef itk::DiscreteGaussianImageFilter<ImageType, ImageType> DiscreteGaussianFilterType;
 
-	DiscreteGaussianImageFilter::Pointer discreteGaussian = DiscreteGaussianImageFilter::New();
+	DiscreteGaussianFilterType::Pointer discreteGaussian = DiscreteGaussianFilterType::New();
 	discreteGaussian->SetInput(reader->GetOutput());
 	discreteGaussian->SetVariance(4);
 	discreteGaussian->SetMaximumKernelWidth(9);
 	discreteGaussian->Update();
 
+	typedef itk::BinomialBlurImageFilter<ImageType, ImageType> BinomialBlurFilterType;
+	BinomialBlurFilterType::Pointer binomialBlur = BinomialBlurFilterType::New();
+	binomialBlur->SetInput(reader->GetOutput());
+	binomialBlur->SetRepetitions(5);
+	binomialBlur->Update();
+
 	QuickView viewer;
 	viewer.SetNumberOfColumns(4);
 	viewer.AddImage(reader->GetOutput());
 	viewer.AddImage(discreteGaussian->GetOutput());
+	viewer.AddImage(binomialBlur->GetOutput());
 	viewer.Visualize();
 	
 	return EXIT_SUCCESS;
