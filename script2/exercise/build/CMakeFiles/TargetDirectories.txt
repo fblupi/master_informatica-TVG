@@ -1,0 +1,3 @@
+C:/Users/fboli/Documents/GitHub/master_informatica-TVG/script2/exercise/build/CMakeFiles/DICOMtoPNG.dir
+C:/Users/fboli/Documents/GitHub/master_informatica-TVG/script2/exercise/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/fboli/Documents/GitHub/master_informatica-TVG/script2/exercise/build/CMakeFiles/ZERO_CHECK.dir
