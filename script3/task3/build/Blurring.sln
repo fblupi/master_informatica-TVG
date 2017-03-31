@@ -1,0 +1,33 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ALL_BUILD", "ALL_BUILD.vcxproj", "{C3046671-694C-31E3-9A19-6D9C8D0D949C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{82020821-38B3-3000-958F-E16F0E0CA683} = {82020821-38B3-3000-958F-E16F0E0CA683}
+		{E41793CE-A160-31BC-9E08-D1C876C8D5E7} = {E41793CE-A160-31BC-9E08-D1C876C8D5E7}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Blurring", "Blurring.vcxproj", "{82020821-38B3-3000-958F-E16F0E0CA683}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E41793CE-A160-31BC-9E08-D1C876C8D5E7} = {E41793CE-A160-31BC-9E08-D1C876C8D5E7}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZERO_CHECK", "ZERO_CHECK.vcxproj", "{E41793CE-A160-31BC-9E08-D1C876C8D5E7}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C3046671-694C-31E3-9A19-6D9C8D0D949C}.Release|x64.ActiveCfg = Release|x64
+		{82020821-38B3-3000-958F-E16F0E0CA683}.Release|x64.ActiveCfg = Release|x64
+		{82020821-38B3-3000-958F-E16F0E0CA683}.Release|x64.Build.0 = Release|x64
+		{E41793CE-A160-31BC-9E08-D1C876C8D5E7}.Release|x64.ActiveCfg = Release|x64
+		{E41793CE-A160-31BC-9E08-D1C876C8D5E7}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
