@@ -1,0 +1,33 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ALL_BUILD", "ALL_BUILD.vcxproj", "{F955C1AB-B1F9-3C23-9AD1-863183F49FC0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C2F7E76E-B9FE-3099-94EE-19CF7A49EE0E} = {C2F7E76E-B9FE-3099-94EE-19CF7A49EE0E}
+		{F7A738BD-6A7D-322C-8DDC-5952B74CB567} = {F7A738BD-6A7D-322C-8DDC-5952B74CB567}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gradient", "Gradient.vcxproj", "{C2F7E76E-B9FE-3099-94EE-19CF7A49EE0E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F7A738BD-6A7D-322C-8DDC-5952B74CB567} = {F7A738BD-6A7D-322C-8DDC-5952B74CB567}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZERO_CHECK", "ZERO_CHECK.vcxproj", "{F7A738BD-6A7D-322C-8DDC-5952B74CB567}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F955C1AB-B1F9-3C23-9AD1-863183F49FC0}.Release|x64.ActiveCfg = Release|x64
+		{C2F7E76E-B9FE-3099-94EE-19CF7A49EE0E}.Release|x64.ActiveCfg = Release|x64
+		{C2F7E76E-B9FE-3099-94EE-19CF7A49EE0E}.Release|x64.Build.0 = Release|x64
+		{F7A738BD-6A7D-322C-8DDC-5952B74CB567}.Release|x64.ActiveCfg = Release|x64
+		{F7A738BD-6A7D-322C-8DDC-5952B74CB567}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
