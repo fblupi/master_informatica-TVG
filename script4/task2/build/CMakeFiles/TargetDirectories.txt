@@ -1,0 +1,3 @@
+C:/Users/fboli/Documents/GitHub/master_informatica-TVG/script4/task2/build/CMakeFiles/Thresholding.dir
+C:/Users/fboli/Documents/GitHub/master_informatica-TVG/script4/task2/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/fboli/Documents/GitHub/master_informatica-TVG/script4/task2/build/CMakeFiles/ZERO_CHECK.dir
