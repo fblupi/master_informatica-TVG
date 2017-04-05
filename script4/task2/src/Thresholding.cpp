@@ -29,10 +29,14 @@ int main(int argc, char * argv[])
 	BinaryThresholdFilterType::Pointer binaryThresholdFilter = BinaryThresholdFilterType::New();
 	binaryThresholdFilter->SetInput(reader->GetOutput());
 
-	binaryThresholdFilter->SetOutsideValue(0);
-	binaryThresholdFilter->SetInsideValue(255);
-	binaryThresholdFilter->SetLowerThreshold(150);
-	binaryThresholdFilter->SetUpperThreshold(180);
+	int outside = 0;
+	int inside = 255;
+	int lower = 150;
+	int upper = 180;
+	binaryThresholdFilter->SetOutsideValue(outside);
+	binaryThresholdFilter->SetInsideValue(inside);
+	binaryThresholdFilter->SetLowerThreshold(lower);
+	binaryThresholdFilter->SetUpperThreshold(upper);
 
 	binaryThresholdFilter->Update();
 
@@ -40,16 +44,23 @@ int main(int argc, char * argv[])
 	ThresholdFilterType::Pointer thresholdFilter = ThresholdFilterType::New();
 	thresholdFilter->SetInput(reader->GetOutput());
 
-	thresholdFilter->SetOutsideValue(0);
-	thresholdFilter->ThresholdBelow(180);
+	int below = 180;
+	thresholdFilter->SetOutsideValue(outside);
+	thresholdFilter->ThresholdBelow(below);
 
 	thresholdFilter->Update();
 
 	QuickView viewer;
 	viewer.SetNumberOfColumns(3);
-	viewer.AddImage(reader->GetOutput());
-	viewer.AddImage(binaryThresholdFilter->GetOutput());
-	viewer.AddImage(thresholdFilter->GetOutput());
+
+	string description;
+
+	description = "Original";
+	viewer.AddImage(reader->GetOutput(), true, description);
+	description = "Binary Threshold\nOutside = " + to_string(outside) + ", Inside = " + to_string(inside) + ", Lower = " + to_string(lower) + ", Upper = " + to_string(upper);
+	viewer.AddImage(binaryThresholdFilter->GetOutput(), true, description);
+	description = "Threshold\nOutside = " + to_string(outside) + ", Below = " + to_string(below);
+	viewer.AddImage(thresholdFilter->GetOutput(), true, description);
 	viewer.Visualize();
 	
 	return EXIT_SUCCESS;

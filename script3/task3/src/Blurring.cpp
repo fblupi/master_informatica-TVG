@@ -30,15 +30,22 @@ int main(int argc, char * argv[])
 
 	DiscreteGaussianFilterType::Pointer discreteGaussian = DiscreteGaussianFilterType::New();
 	discreteGaussian->SetInput(reader->GetOutput());
-	discreteGaussian->SetVariance(4);
-	discreteGaussian->SetMaximumKernelWidth(9);
+
+	int discreteGaussianVariance = 4;
+	int discreteGaussianMaximumKernelWidth = 3;
+
+	discreteGaussian->SetVariance(discreteGaussianVariance);
+	discreteGaussian->SetMaximumKernelWidth(discreteGaussianMaximumKernelWidth);
 	discreteGaussian->Update();
 
 	typedef itk::BinomialBlurImageFilter<ImageType, ImageType> BinomialBlurFilterType;
 	
 	BinomialBlurFilterType::Pointer binomialBlur = BinomialBlurFilterType::New();
 	binomialBlur->SetInput(reader->GetOutput());
-	binomialBlur->SetRepetitions(5);
+
+	int binomialBlurRepetitions = 5;
+
+	binomialBlur->SetRepetitions(binomialBlurRepetitions);
 	binomialBlur->Update();
 
 	typedef itk::RecursiveGaussianImageFilter<ImageType, ImageType> RecursiveGaussianFilterType;
@@ -58,18 +65,28 @@ int main(int argc, char * argv[])
 	filterX->SetInput(reader->GetOutput());
 	filterY->SetInput(filterX->GetOutput());
 
-	filterX->SetSigma(3);
-	filterY->SetSigma(3);
+	int sigma = 3;
+
+	filterX->SetSigma(sigma);
+	filterY->SetSigma(sigma);
 
 	filterY->Update();
 
 	QuickView viewer;
 	viewer.SetNumberOfColumns(5);
-	viewer.AddImage(reader->GetOutput());
-	viewer.AddImage(discreteGaussian->GetOutput());
-	viewer.AddImage(binomialBlur->GetOutput());
-	viewer.AddImage(filterX->GetOutput());
-	viewer.AddImage(filterY->GetOutput());
+
+	string description;
+
+	description = "Original";
+	viewer.AddImage(reader->GetOutput(), true, description);
+	description = "Discrete Gaussian\nVariance = " + to_string(discreteGaussianVariance) + ", Maximum Kernel = " + to_string(discreteGaussianMaximumKernelWidth);
+	viewer.AddImage(discreteGaussian->GetOutput(), true, description);
+	description = "Binomial Blur\nRepetitions = " + to_string(binomialBlurRepetitions);
+	viewer.AddImage(binomialBlur->GetOutput(), true, description);
+	description = "Recursive Gaussian X\nSigma = " + to_string(sigma);
+	viewer.AddImage(filterX->GetOutput(), true, description);
+	description = "Recursive Gaussian XY\nSigma = " + to_string(sigma);
+	viewer.AddImage(filterY->GetOutput(), true, description);
 	viewer.Visualize();
 	
 	return EXIT_SUCCESS;

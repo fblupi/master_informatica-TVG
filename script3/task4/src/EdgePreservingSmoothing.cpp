@@ -70,10 +70,17 @@ int main (int argc, char ** argv)
 
 	QuickView viewer;
 	viewer.SetNumberOfColumns(4);
-	viewer.AddImage(reader->GetOutput());
-	viewer.AddImage(gradientAnisotropicFilter->GetOutput());
-	viewer.AddImage(curvatureAnisotropicFilter->GetOutput());
-	viewer.AddImage(curvatureFlowFilter->GetOutput());
+
+	string description;
+
+	description = "Original";
+	viewer.AddImage(reader->GetOutput(), true, description);
+	description = "Gradient Anisotropic\nIterations = " + to_string(gradientAnisotropicNumberOfIterations) + ", Time Step = " + to_string(gradientAnisotropicTimeStep) + ", Conductance = " + to_string(gradientAnistropicConductance);
+	viewer.AddImage(gradientAnisotropicFilter->GetOutput(), true, description);
+	description = "Curvature Anisotropic\nIterations = " + to_string(curvatureAnisotropicNumberOfIterations) + ", Time Step = " + to_string(curvatureAnisotropicTimeStep) + ", Conductance = " + to_string(curvatureAnisotropicConductance) + ", Use spacing = " + to_string(curvatureAnisotropicUseImageSpacing);
+	viewer.AddImage(curvatureAnisotropicFilter->GetOutput(), true, description);
+	description = "Curvature Flow\nIterations = " + to_string(curvatureFlowNumberOfIterations) + ", Time Step = " + to_string(curvatureFlowTimeStep);
+	viewer.AddImage(curvatureFlowFilter->GetOutput(), true, description);
 	viewer.Visualize();
 
 	return EXIT_SUCCESS;

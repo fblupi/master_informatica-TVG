@@ -66,13 +66,23 @@ int main(int argc, char * argv[])
 
 	QuickView viewer;
 	viewer.SetNumberOfColumns(3);
-	viewer.AddImage(mean3->GetOutput());
-	viewer.AddImage(mean5->GetOutput());
-	viewer.AddImage(mean7->GetOutput());
-	viewer.AddImage(median3->GetOutput());
-	viewer.AddImage(median5->GetOutput());
-	viewer.AddImage(median7->GetOutput());
-	viewer.AddImage(reader->GetOutput());
+
+	string description;
+
+	description = "Mean\nRadius = 3";
+	viewer.AddImage(mean3->GetOutput(), true, description.c_str());
+	description = "Mean\nRadius = 5";
+	viewer.AddImage(mean5->GetOutput(), true, description.c_str());
+	description = "Mean\nRadius = 7";
+	viewer.AddImage(mean7->GetOutput(), true, description.c_str());
+	description = "Median\nRadius = 3";
+	viewer.AddImage(median3->GetOutput(), true, description.c_str());
+	description = "Median\nRadius = 5";
+	viewer.AddImage(median5->GetOutput(), true, description.c_str());
+	description = "Median\nRadius = 3";
+	viewer.AddImage(median7->GetOutput(), true, description.c_str());
+	description = "Original";
+	viewer.AddImage(reader->GetOutput(), true, description.c_str());
 	viewer.Visualize();
 	
 	return EXIT_SUCCESS;

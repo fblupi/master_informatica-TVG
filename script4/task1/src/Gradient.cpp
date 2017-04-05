@@ -43,9 +43,15 @@ int main (int argc, char * argv[])
 
 	QuickView viewer;
 	viewer.SetNumberOfColumns(3);
-	viewer.AddImage(reader->GetOutput());
-	viewer.AddImage(gradientMagnitudeFilter->GetOutput());
-	viewer.AddImage(gradientMagnitudeRecursiveGaussianFilter->GetOutput());
+
+	string description;
+
+	description = "Original";
+	viewer.AddImage(reader->GetOutput(), true, description);
+	description = "Gradient Magnitude";
+	viewer.AddImage(gradientMagnitudeFilter->GetOutput(), true, description);
+	description = "Gradient Magnitude Recursive Gausssian\nSigma = " + to_string(sigma);
+	viewer.AddImage(gradientMagnitudeRecursiveGaussianFilter->GetOutput(), true, description);
 	viewer.Visualize();
 
 	return EXIT_SUCCESS;

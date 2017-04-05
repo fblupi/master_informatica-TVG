@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\fboli\Documents\GitHub\master_informatica-TVG\script4\task3\src\EdgeDetection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\fboli\Documents\GitHub\master_informatica-TVG\script4\task3\src\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{59257B75-C199-333D-ADF8-2444B1BBE95D}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
