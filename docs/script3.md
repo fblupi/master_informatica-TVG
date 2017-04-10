@@ -14,7 +14,7 @@
 
 #### Gaussian Noise
 
-!["sap2"](img/script3/task2/gaussianNoise.png)
+!["gn"](img/script3/task2/gaussianNoise.png)
 
 ### Conclusiones
 
@@ -32,7 +32,7 @@ Vemos como el median filter es el que mejor se comporta a la hora de quitar ruid
 
 #### Gaussian Noise
 
-!["sap2"](img/script3/task3/gaussianNoise.png)
+!["gn"](img/script3/task3/gaussianNoise.png)
 
 ### Conclusiones
 
@@ -50,7 +50,7 @@ Los filtros smoothing, al contrario que el median filter, no se comportan bien c
 
 #### Gaussian Noise
 
-!["sap2"](img/script3/task4/gaussianNoise.png)
+!["gn"](img/script3/task4/gaussianNoise.png)
 
 ### Conclusiones
 
