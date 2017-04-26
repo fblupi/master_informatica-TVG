@@ -1,8 +1,9 @@
 #include "itkImage.h"
 #include "itkImageFileReader.h"
 
-#include "itkConnectedThresholdImageFilter.h"
 #include "itkMedianImageFilter.h"
+#include "itkConnectedThresholdImageFilter.h"
+#include "itkNeighborhoodConnectedImageFilter.h"
 
 #include "QuickView.h"
 
@@ -53,6 +54,20 @@ int main (int argc, char * argv[])
 	connectedThreshold->SetSeed(index);
 	connectedThresholdFiltered->SetSeed(index);
 
+	typedef itk::NeighborhoodConnectedImageFilter<InputImageType, InputImageType> NeighborhoodConnectedFilterType;
+	NeighborhoodConnectedFilterType::Pointer neighborhoodConnected = NeighborhoodConnectedFilterType::New();
+	NeighborhoodConnectedFilterType::Pointer neighborhoodConnectedFiltered = NeighborhoodConnectedFilterType::New();
+	neighborhoodConnected->SetInput(reader->GetOutput());
+	neighborhoodConnectedFiltered->SetInput(filter->GetOutput());
+	neighborhoodConnected->SetLower(lowerThreshold);
+	neighborhoodConnectedFiltered->SetLower(lowerThreshold);
+	neighborhoodConnected->SetUpper(upperThreshold);
+	neighborhoodConnectedFiltered->SetUpper(upperThreshold);
+	neighborhoodConnected->SetReplaceValue(255);
+	neighborhoodConnectedFiltered->SetReplaceValue(255);
+	neighborhoodConnected->SetSeed(index);
+	neighborhoodConnectedFiltered->SetSeed(index);
+
 	QuickView viewer;
 	viewer.SetNumberOfColumns(3);
 
@@ -64,8 +79,10 @@ int main (int argc, char * argv[])
 	viewer.AddImage(connectedThreshold->GetOutput(), true, description);
 	description = "Connected Threshold Image Filter Filtered \nLower: " + to_string(lowerThreshold) + ", Upper: " + to_string(upperThreshold);
 	viewer.AddImage(connectedThresholdFiltered->GetOutput(), true, description);
-	description = "Neigborhood Connected Image Filter";
-	description = "Neigborhood Connected Image Filter Filtered";
+	description = "Neigborhood Connected Image Filter \nLower: " + to_string(lowerThreshold) + ", Upper: " + to_string(upperThreshold);
+	viewer.AddImage(neighborhoodConnected->GetOutput(), true, description);
+	description = "Neigborhood Connected Image Filter Filtered \nLower: " + to_string(lowerThreshold) + ", Upper: " + to_string(upperThreshold);
+	viewer.AddImage(neighborhoodConnectedFiltered->GetOutput(), true, description);
 	description = "Confidence Connected Image Filter";
 	description = "Confidence Connected Image Filter Filtered";
 	viewer.Visualize();
