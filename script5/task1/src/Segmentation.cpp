@@ -4,6 +4,7 @@
 #include "itkMedianImageFilter.h"
 #include "itkConnectedThresholdImageFilter.h"
 #include "itkNeighborhoodConnectedImageFilter.h"
+#include "itkConfidenceConnectedImageFilter.h"
 
 #include "QuickView.h"
 
@@ -68,13 +69,31 @@ int main (int argc, char * argv[])
 	neighborhoodConnected->SetSeed(index);
 	neighborhoodConnectedFiltered->SetSeed(index);
 
+	unsigned int radius = 3;
+	double multiplier = 3;
+	unsigned int iters = 25;
+
+	typedef itk::ConfidenceConnectedImageFilter<InputImageType, InputImageType> ConfidenceConnectedFilterType;
+	ConfidenceConnectedFilterType::Pointer confidenceConnected = ConfidenceConnectedFilterType::New();
+	ConfidenceConnectedFilterType::Pointer confidenceConnectedFiltered = ConfidenceConnectedFilterType::New();
+	confidenceConnected->SetInput(reader->GetOutput());
+	confidenceConnectedFiltered->SetInput(reader->GetOutput());
+	confidenceConnected->SetInitialNeighborhoodRadius(radius);
+	confidenceConnectedFiltered->SetInitialNeighborhoodRadius(radius);
+	confidenceConnected->SetMultiplier(multiplier);
+	confidenceConnectedFiltered->SetMultiplier(multiplier);
+	confidenceConnected->SetNumberOfIterations(iters);
+	confidenceConnectedFiltered->SetNumberOfIterations(iters);
+	confidenceConnected->SetReplaceValue(255);
+	confidenceConnectedFiltered->SetReplaceValue(255);
+	confidenceConnected->SetSeed(index);
+	confidenceConnectedFiltered->SetSeed(index);
+
 	QuickView viewer;
-	viewer.SetNumberOfColumns(3);
+	viewer.SetNumberOfColumns(4);
 
 	string description;
 
-	description = "Original";
-	viewer.AddImage(reader->GetOutput(), true, description);
 	description = "Connected Threshold Image Filter \nLower: " + to_string(lowerThreshold) + ", Upper: " + to_string(upperThreshold);
 	viewer.AddImage(connectedThreshold->GetOutput(), true, description);
 	description = "Connected Threshold Image Filter Filtered \nLower: " + to_string(lowerThreshold) + ", Upper: " + to_string(upperThreshold);
@@ -83,8 +102,12 @@ int main (int argc, char * argv[])
 	viewer.AddImage(neighborhoodConnected->GetOutput(), true, description);
 	description = "Neigborhood Connected Image Filter Filtered \nLower: " + to_string(lowerThreshold) + ", Upper: " + to_string(upperThreshold);
 	viewer.AddImage(neighborhoodConnectedFiltered->GetOutput(), true, description);
-	description = "Confidence Connected Image Filter";
-	description = "Confidence Connected Image Filter Filtered";
+	description = "Confidence Connected Image Filter \nRadius: " + to_string(radius) + ", Multiplier: " + to_string(multiplier) + ", Iters: " + to_string(iters);
+	viewer.AddImage(confidenceConnected->GetOutput(), true, description);
+	description = "Confidence Connected Image Filter Filtered \nRadius: " + to_string(radius) + ", Multiplier: " + to_string(multiplier) + ", Iters: " + to_string(iters);
+	viewer.AddImage(confidenceConnectedFiltered->GetOutput(), true, description);
+	description = "Original";
+	viewer.AddImage(reader->GetOutput(), true, description);
 	viewer.Visualize();
 
 	return EXIT_SUCCESS;
