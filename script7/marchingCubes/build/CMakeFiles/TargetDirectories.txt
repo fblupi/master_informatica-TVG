@@ -1,0 +1,3 @@
+C:/Users/fboli/Documents/GitHub/master_informatica-TVG/script7/marchingCubes/build/CMakeFiles/MarchingCubes.dir
+C:/Users/fboli/Documents/GitHub/master_informatica-TVG/script7/marchingCubes/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/fboli/Documents/GitHub/master_informatica-TVG/script7/marchingCubes/build/CMakeFiles/ZERO_CHECK.dir
