@@ -96,7 +96,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="C:\Users\fboli\Documents\GitHub\master_informatica-TVG\script7\cylinder\src\Cylinder.cxx"  />
+    <ClCompile Include="C:\Users\fboli\Documents\GitHub\master_informatica-TVG\script7\cylinder\src\Cylinder.cpp"  />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="C:/Users/fboli/Documents/GitHub/master_informatica-TVG/script7/cylinder/build/ZERO_CHECK.vcxproj">
