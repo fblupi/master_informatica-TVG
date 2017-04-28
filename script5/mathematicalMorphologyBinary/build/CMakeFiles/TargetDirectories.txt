@@ -1,0 +1,3 @@
+C:/Users/fboli/Documents/GitHub/master_informatica-TVG/script5/mathematicalMorphologyBinary/build/CMakeFiles/MathematicalMorphologyBinaryFilters.dir
+C:/Users/fboli/Documents/GitHub/master_informatica-TVG/script5/mathematicalMorphologyBinary/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/fboli/Documents/GitHub/master_informatica-TVG/script5/mathematicalMorphologyBinary/build/CMakeFiles/ZERO_CHECK.dir
