@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\fboli\Documents\GitHub\master_informatica-TVG\script7\rescaleIntensityImageFilter\build\CMakeFiles\5ddae14f0c80d23d692b7ad89732a3be\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{D88D1C4A-513A-3A0C-B3D1-DB5B20F8DB76}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
