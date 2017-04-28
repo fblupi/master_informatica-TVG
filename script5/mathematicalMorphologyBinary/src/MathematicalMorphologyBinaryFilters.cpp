@@ -24,6 +24,11 @@ int main(int argc, char * argv[])
 	typedef unsigned char InputPixelType;
 	typedef unsigned char OutputPixelType;
 
+	const InputPixelType lowerThreshold = atoi(argv[2]);
+	const InputPixelType upperThreshold = atoi(argv[3]);
+	InputPixelType background = 0;
+	InputPixelType foreground = 255;
+
 	typedef itk::Image<InputPixelType, Dimension> InputImageType;
 	typedef itk::Image<OutputPixelType, Dimension> OutputImageType;
 
@@ -34,30 +39,10 @@ int main(int argc, char * argv[])
 	typedef itk::BinaryDilateImageFilter<InputImageType, OutputImageType, StructuringElementType> DilateFilterType;
 
 	ReaderType::Pointer reader = ReaderType::New();
-
-	ThresholdFilterType::Pointer thresholder = ThresholdFilterType::New();
-
-	ErodeFilterType::Pointer binaryErode = ErodeFilterType::New();
-	DilateFilterType::Pointer binaryDilate = DilateFilterType::New();
-
-	StructuringElementType  structuringElement;
-
-	structuringElement.SetRadius(1);  // 3x3 structuring element
-
-	structuringElement.CreateStructuringElement();
-
-	binaryErode->SetKernel(structuringElement);
-	binaryDilate->SetKernel(structuringElement);
-
 	reader->SetFileName(argv[1]);
 
-	const InputPixelType lowerThreshold = atoi(argv[2]);
-	const InputPixelType upperThreshold = atoi(argv[3]);
-
+	ThresholdFilterType::Pointer thresholder = ThresholdFilterType::New();
 	thresholder->SetInput(reader->GetOutput());
-
-	InputPixelType background = 0;
-	InputPixelType foreground = 255;
 
 	thresholder->SetOutsideValue(background);
 	thresholder->SetInsideValue(foreground);
@@ -65,10 +50,19 @@ int main(int argc, char * argv[])
 	thresholder->SetLowerThreshold(lowerThreshold);
 	thresholder->SetUpperThreshold(upperThreshold);
 
+	ErodeFilterType::Pointer binaryErode = ErodeFilterType::New();
 	binaryErode->SetInput(thresholder->GetOutput());
+	DilateFilterType::Pointer binaryDilate = DilateFilterType::New();
 	binaryDilate->SetInput(thresholder->GetOutput());
 
+	StructuringElementType structuringElement;
+	structuringElement.SetRadius(1);  // 3x3 structuring element
+	structuringElement.CreateStructuringElement();
+
+	binaryErode->SetKernel(structuringElement);
 	binaryErode->SetErodeValue(foreground);
+
+	binaryDilate->SetKernel(structuringElement);
 	binaryDilate->SetDilateValue(foreground);
 
 	QuickView viewer;
