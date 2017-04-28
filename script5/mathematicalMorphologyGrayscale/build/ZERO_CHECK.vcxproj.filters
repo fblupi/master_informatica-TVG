@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\fboli\Documents\GitHub\master_informatica-TVG\script5\mathematicalMorphologyGrayscale\build\CMakeFiles\0f0c430afce05b12bdfb5135c084692b\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{5842FCF7-FDFB-3C39-B54A-4EACF1D9A0E1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

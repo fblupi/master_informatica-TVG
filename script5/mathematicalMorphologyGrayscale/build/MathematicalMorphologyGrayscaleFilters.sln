@@ -1,0 +1,33 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ALL_BUILD", "ALL_BUILD.vcxproj", "{5749BBAC-5A3C-3205-90FC-172348AAF61C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C3BBD6BF-7583-31E2-846E-0748B878F022} = {C3BBD6BF-7583-31E2-846E-0748B878F022}
+		{20CB086F-6697-31D0-8107-2ABB1A63898E} = {20CB086F-6697-31D0-8107-2ABB1A63898E}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MathematicalMorphologyGrayscaleFilters", "MathematicalMorphologyGrayscaleFilters.vcxproj", "{C3BBD6BF-7583-31E2-846E-0748B878F022}"
+	ProjectSection(ProjectDependencies) = postProject
+		{20CB086F-6697-31D0-8107-2ABB1A63898E} = {20CB086F-6697-31D0-8107-2ABB1A63898E}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZERO_CHECK", "ZERO_CHECK.vcxproj", "{20CB086F-6697-31D0-8107-2ABB1A63898E}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5749BBAC-5A3C-3205-90FC-172348AAF61C}.Release|x64.ActiveCfg = Release|x64
+		{C3BBD6BF-7583-31E2-846E-0748B878F022}.Release|x64.ActiveCfg = Release|x64
+		{C3BBD6BF-7583-31E2-846E-0748B878F022}.Release|x64.Build.0 = Release|x64
+		{20CB086F-6697-31D0-8107-2ABB1A63898E}.Release|x64.ActiveCfg = Release|x64
+		{20CB086F-6697-31D0-8107-2ABB1A63898E}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
