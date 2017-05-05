@@ -2,6 +2,7 @@
 #include "itkImageFileReader.h"
 #include "itkRescaleIntensityImageFilter.h"
 #include "itkCastImageFilter.h"
+#include "itkMedianImageFilter.h"
 
 #include <cstdlib>
 #include <iostream>
@@ -20,6 +21,8 @@
 
 using namespace std;
 
+#define INTERACTOR 0
+
 int main(int argc, char *argv[])
 {
 	if (argc < 2) {
@@ -33,9 +36,13 @@ int main(int argc, char *argv[])
 	ReaderType::Pointer reader = ReaderType::New();
 	reader->SetFileName(argv[1]);
 
+	typedef itk::MedianImageFilter<ImageType, ImageType> MedianImageFilterType;
+	MedianImageFilterType::Pointer filter = MedianImageFilterType::New();
+	filter->SetInput(reader->GetOutput());
+
 	typedef itk::ImageToVTKImageFilter<ImageType> ConnectorType;
 	ConnectorType::Pointer originalConnector = ConnectorType::New();
-	originalConnector->SetInput(reader->GetOutput());
+	originalConnector->SetInput(filter->GetOutput());
 	vtkSmartPointer<vtkImageActor> originalActor = vtkSmartPointer<vtkImageActor>::New();
 #if VTK_MAJOR_VERSION <= 5
 	originalActor->SetInput(originalConnector->GetOutput());
@@ -54,12 +61,12 @@ int main(int argc, char *argv[])
 	rescaledConnector->SetInput(rescaleFilter->GetOutput());
 
 	vtkSmartPointer<vtkImageActor> rescaledActor = vtkSmartPointer<vtkImageActor>::New();
-	#if VTK_MAJOR_VERSION <= 5
+#if VTK_MAJOR_VERSION <= 5
 	rescaledActor->SetInput(rescaledConnector->GetOutput());
-	#else
+#else
 	rescaledConnector->Update();
 	rescaledActor->GetMapper()->SetInputData(rescaledConnector->GetOutput());
-	#endif
+#endif
 
 	// There will be one render window
 	vtkSmartPointer<vtkRenderWindow> renderWindow = vtkSmartPointer<vtkRenderWindow>::New();
@@ -94,10 +101,14 @@ int main(int argc, char *argv[])
 
 	leftRenderer->ResetCamera();
 	renderWindow->Render();
-
+#if INTERACTOR == 0
 	vtkSmartPointer<vtkInteractorStyleImage> style = vtkSmartPointer<vtkInteractorStyleImage>::New();
 	interactor->SetInteractorStyle(style);
 	interactor->Start();
-
+# else
+	vtkSmartPointer<vtkInteractorStyleTrackballCamera> style = vtkSmartPointer<vtkInteractorStyleTrackballCamera>::New();
+	interactor->SetInteractorStyle(style);
+	interactor->Start();
+#endif
 	return EXIT_SUCCESS;
 }
