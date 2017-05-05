@@ -42,30 +42,22 @@ int main(int argc, char *argv[])
 
 	typedef itk::ImageToVTKImageFilter<ImageType> ConnectorType;
 	ConnectorType::Pointer originalConnector = ConnectorType::New();
-	originalConnector->SetInput(filter->GetOutput());
+	originalConnector->SetInput(reader->GetOutput());
 	vtkSmartPointer<vtkImageActor> originalActor = vtkSmartPointer<vtkImageActor>::New();
+
+	typedef itk::ImageToVTKImageFilter<ImageType> ConnectorType;
+	ConnectorType::Pointer filterConnector = ConnectorType::New();
+	filterConnector->SetInput(filter->GetOutput());
+	vtkSmartPointer<vtkImageActor> filteredActor = vtkSmartPointer<vtkImageActor>::New();
+
 #if VTK_MAJOR_VERSION <= 5
 	originalActor->SetInput(originalConnector->GetOutput());
+	filterActor->SetInput(filterConnector->GetOutput());
 #else
 	originalConnector->Update();
 	originalActor->GetMapper()->SetInputData(originalConnector->GetOutput());
-#endif
-   
-	typedef itk::RescaleIntensityImageFilter<ImageType, ImageType> RescaleFilterType;
-	RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
-	rescaleFilter->SetInput(reader->GetOutput());
-	rescaleFilter->SetOutputMinimum(0);
-	rescaleFilter->SetOutputMaximum(255);
-
-	ConnectorType::Pointer rescaledConnector = ConnectorType::New();
-	rescaledConnector->SetInput(rescaleFilter->GetOutput());
-
-	vtkSmartPointer<vtkImageActor> rescaledActor = vtkSmartPointer<vtkImageActor>::New();
-#if VTK_MAJOR_VERSION <= 5
-	rescaledActor->SetInput(rescaledConnector->GetOutput());
-#else
-	rescaledConnector->Update();
-	rescaledActor->GetMapper()->SetInputData(rescaledConnector->GetOutput());
+	filterConnector->Update();
+	filteredActor->GetMapper()->SetInputData(filterConnector->GetOutput());
 #endif
 
 	// There will be one render window
@@ -93,7 +85,7 @@ int main(int argc, char *argv[])
 
 	// Add the sphere to the left and the cube to the right
 	leftRenderer->AddActor(originalActor);
-	rightRenderer->AddActor(rescaledActor);
+	rightRenderer->AddActor(filteredActor);
 
 	vtkSmartPointer<vtkCamera> camera = vtkSmartPointer<vtkCamera>::New();
 	leftRenderer->SetActiveCamera(camera);
@@ -101,6 +93,7 @@ int main(int argc, char *argv[])
 
 	leftRenderer->ResetCamera();
 	renderWindow->Render();
+
 #if INTERACTOR == 0
 	vtkSmartPointer<vtkInteractorStyleImage> style = vtkSmartPointer<vtkInteractorStyleImage>::New();
 	interactor->SetInteractorStyle(style);
@@ -110,5 +103,6 @@ int main(int argc, char *argv[])
 	interactor->SetInteractorStyle(style);
 	interactor->Start();
 #endif
+
 	return EXIT_SUCCESS;
 }
