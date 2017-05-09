@@ -6,3 +6,4 @@ Repositorio de la asignatura Técnicas de Visualización Gráfica (Aplicaciones 
 
 * [Script 3: Filtrado (I)](script3)
 * [Script 4: Filtrado (II)](script4)
+* [Script 5: Segmentación)](script5)

@@ -1,0 +1,33 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ALL_BUILD", "ALL_BUILD.vcxproj", "{AC4B3ED8-5571-34C5-8E68-EE04FCF1D2B8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9700CE07-FFFD-3F33-9311-763F50F83CD7} = {9700CE07-FFFD-3F33-9311-763F50F83CD7}
+		{3766F214-68A9-30D7-BB3E-3D117DEC8C7D} = {3766F214-68A9-30D7-BB3E-3D117DEC8C7D}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Segmentation", "Segmentation.vcxproj", "{9700CE07-FFFD-3F33-9311-763F50F83CD7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3766F214-68A9-30D7-BB3E-3D117DEC8C7D} = {3766F214-68A9-30D7-BB3E-3D117DEC8C7D}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZERO_CHECK", "ZERO_CHECK.vcxproj", "{3766F214-68A9-30D7-BB3E-3D117DEC8C7D}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC4B3ED8-5571-34C5-8E68-EE04FCF1D2B8}.Release|x64.ActiveCfg = Release|x64
+		{9700CE07-FFFD-3F33-9311-763F50F83CD7}.Release|x64.ActiveCfg = Release|x64
+		{9700CE07-FFFD-3F33-9311-763F50F83CD7}.Release|x64.Build.0 = Release|x64
+		{3766F214-68A9-30D7-BB3E-3D117DEC8C7D}.Release|x64.ActiveCfg = Release|x64
+		{3766F214-68A9-30D7-BB3E-3D117DEC8C7D}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
