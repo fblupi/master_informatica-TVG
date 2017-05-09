@@ -75,7 +75,7 @@ int main (int argc, char * argv[])
 
 	unsigned int radius = 3;
 	double multiplier = 3;
-	unsigned int iters = 4;
+	unsigned int iters = 2;
 
 	typedef itk::ConfidenceConnectedImageFilter<InputImageType, InputImageType> ConfidenceConnectedFilterType;
 	ConfidenceConnectedFilterType::Pointer confidenceConnected = ConfidenceConnectedFilterType::New();

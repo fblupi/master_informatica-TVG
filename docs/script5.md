@@ -62,3 +62,46 @@ En este caso, el no agregar el filtrado previo hace que la segmentación no se h
 ![confidenceConnected4Iters](img/script5/plexosCoroideos/confidenceConnected4Iters.png)
 
 ### Sustancia blanca
+
+Al segmentar esta parte se debe notar más el pre-filtrado de la imagen pues no es una parte tan diferenciada como la anterior.
+
+#### *Connected Threshold*
+
+* Seed: 60, 125 
+* Threshold: 150, 180
+
+##### Sin filtro
+
+![connectedThreshold](img/script5/sustanciaBlanca/connectedThreshold.png)
+
+##### Con filtro
+
+![connectedThresholdFiltered](img/script5/sustanciaBlanca/connectedThresholdFiltered.png)
+
+#### *Neighbourhood Connected*
+
+* Seed: 60, 125 
+* Threshold: 150, 180
+
+##### Sin filtro
+
+![neighbourhoodConnected](img/script5/sustanciaBlanca/neighbourhoodConnected.png)
+
+##### Con filtro
+
+![neighbourhoodConnectedFiltered](img/script5/sustanciaBlanca/neighbourhoodConnectedFiltered.png)
+
+#### *Confidence Connected*
+
+* Seed: 60, 125 
+* Radius: 3
+* Multiplier: 3
+* Iters: 2 (a partir de la tercera iteración empieza a segmentar zonas que no forman parte del plexo coroideo)
+
+##### Sin filtro
+
+![confidenceConnected](img/script5/sustanciaBlanca/confidenceConnected.png)
+
+##### Con filtro
+
+![confidenceConnectedFiltered](img/script5/sustanciaBlanca/confidenceConnectedFiltered.png)
