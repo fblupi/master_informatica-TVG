@@ -105,3 +105,26 @@ Al segmentar esta parte se debe notar más el pre-filtrado de la imagen pues no 
 ##### Con filtro
 
 ![confidenceConnectedFiltered](img/script5/sustanciaBlanca/confidenceConnectedFiltered.png)
+
+## Angiograma
+
+Usando el archivo `coronaryAngiogram.png`:
+
+![coronaryAngiogram](img/script5/coronaryAngiogram.png)
+
+Para este se ha utilizado el filtro *Confidence Connected* pues es el único con el que se obtenía una segmentación medianamente buena. Además, se ha aplicado operadores morfológicos con los que se ve que mejora esta segmentación.
+
+#### *Confidence Connected*
+
+* Seed: 79, 321 
+* Radius: 3
+* Multiplier: 3
+* Iters: 25
+
+![confidenceConnected](img/script5/angiograma/confidenceConnected.png)
+
+##### Diferencia con operadores morfológicos
+
+A la derecha la imagen con operadores morfológicos (dilatación + erosión) y a la izquierda sin ellos donde se ve cómo tapa agujeros.
+
+![mathMorph](img/script5/angiograma/mathMorph.png)

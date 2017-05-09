@@ -6,7 +6,13 @@
 #include "itkNeighborhoodConnectedImageFilter.h"
 #include "itkConfidenceConnectedImageFilter.h"
 
+#include "itkBinaryErodeImageFilter.h"
+#include "itkBinaryDilateImageFilter.h"
+#include "itkBinaryBallStructuringElement.h"
+
 #include "QuickView.h"
+
+#define MATH 1
 
 using namespace std;
 
@@ -27,6 +33,10 @@ int main (int argc, char * argv[])
 
 	typedef itk::Image<InputPixelType, 2> InputImageType;
 	typedef itk::Image<OutputPixelType, 2> OutputImageType;
+
+	typedef itk::BinaryBallStructuringElement<InputPixelType, 2> StructuringElementType;
+	typedef itk::BinaryErodeImageFilter<InputImageType, OutputImageType, StructuringElementType> ErodeFilterType;
+	typedef itk::BinaryDilateImageFilter<InputImageType, OutputImageType, StructuringElementType> DilateFilterType;
 
 	int seedX = atoi(argv[2]);
 	int seedY = atoi(argv[3]);
@@ -75,7 +85,7 @@ int main (int argc, char * argv[])
 
 	unsigned int radius = 3;
 	double multiplier = 3;
-	unsigned int iters = 1;
+	unsigned int iters = 25;
 
 	typedef itk::ConfidenceConnectedImageFilter<InputImageType, InputImageType> ConfidenceConnectedFilterType;
 	ConfidenceConnectedFilterType::Pointer confidenceConnected = ConfidenceConnectedFilterType::New();
@@ -93,6 +103,20 @@ int main (int argc, char * argv[])
 	confidenceConnected->SetSeed(index);
 	confidenceConnectedFiltered->SetSeed(index);
 
+	ErodeFilterType::Pointer binaryErode = ErodeFilterType::New();
+	DilateFilterType::Pointer binaryDilate = DilateFilterType::New();
+	StructuringElementType structuringElement;
+	structuringElement.SetRadius(1); // 3x3 structuring element
+	structuringElement.CreateStructuringElement();
+	binaryDilate->SetKernel(structuringElement);
+	binaryErode->SetKernel(structuringElement);
+
+	binaryDilate->SetInput(confidenceConnectedFiltered->GetOutput());
+	binaryErode->SetInput(binaryDilate->GetOutput());
+	binaryDilate->SetDilateValue(255);
+	binaryErode->SetErodeValue(255);
+	binaryErode->SetBackgroundValue(0);
+
 	QuickView viewer;
 	viewer.SetNumberOfColumns(4);
 
@@ -109,7 +133,11 @@ int main (int argc, char * argv[])
 	description = "Confidence Connected Image Filter \nRadius: " + to_string(radius) + ", Multiplier: " + to_string(multiplier) + ", Iters: " + to_string(iters);
 	viewer.AddImage(confidenceConnected->GetOutput(), true, description);
 	description = "Confidence Connected Image Filter Filtered \nRadius: " + to_string(radius) + ", Multiplier: " + to_string(multiplier) + ", Iters: " + to_string(iters);
+#if MATH
+	viewer.AddImage(binaryErode->GetOutput(), true, description);
+# else
 	viewer.AddImage(confidenceConnectedFiltered->GetOutput(), true, description);
+#endif
 	description = "Original";
 	viewer.AddImage(reader->GetOutput(), true, description);
 	viewer.Visualize();
