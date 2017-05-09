@@ -96,7 +96,7 @@ Al segmentar esta parte se debe notar más el pre-filtrado de la imagen pues no 
 * Seed: 60, 125 
 * Radius: 3
 * Multiplier: 3
-* Iters: 2 (a partir de la tercera iteración empieza a segmentar zonas que no forman parte del plexo coroideo)
+* Iters: 1
 
 ##### Sin filtro
 
