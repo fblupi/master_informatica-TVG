@@ -128,3 +128,9 @@ Para este se ha utilizado el filtro *Confidence Connected* pues es el único con
 A la derecha la imagen con operadores morfológicos (dilatación + erosión) y a la izquierda sin ellos donde se ve cómo tapa agujeros.
 
 ![mathMorph](img/script5/angiograma/mathMorph.png)
+
+## Conclusiones
+
+Hemos visto en primer lugar la segmentación de dos partes del cerebro. Una de ellas, el plexo coroideo es muy sencilla de segmentar pues en su vecindario es fácil determinar qué vóxel es adyacente y cuál no con una tolerancia mínima. En cambio con la sustancia blanca no es tan fácil y hace necesario un pre-filtrado de la imagen para que la segmentación sea lo sufcientemente buena.
+
+Por último se ha intentado segmentar un angiograma lo cual es bastante complicado por el gran número de ramificaciones que tiene. Habría mejorado si se hubiesen podido utilizar varias semillas. Con este ejemplo se han probado los operadores morfológicos que vemos que ayudan a cerrar agujeros manteniendo la forma original.
