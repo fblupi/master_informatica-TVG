@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\fboli\Documents\GitHub\master_informatica-TVG\script8\example1\src\Medical1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\fboli\Documents\GitHub\master_informatica-TVG\script8\example1\src\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{824582E2-0D27-3322-BA84-FF81A39C6909}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
