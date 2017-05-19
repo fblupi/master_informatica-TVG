@@ -1,0 +1,33 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ALL_BUILD", "ALL_BUILD.vcxproj", "{2AC16313-086E-3792-A4C3-F7DFE7255837}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FAC31A10-030B-3BC5-8421-40B4D290B92B} = {FAC31A10-030B-3BC5-8421-40B4D290B92B}
+		{735532E5-FDEA-3547-9DA3-0F9FED2090E4} = {735532E5-FDEA-3547-9DA3-0F9FED2090E4}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Medical4", "Medical4.vcxproj", "{FAC31A10-030B-3BC5-8421-40B4D290B92B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{735532E5-FDEA-3547-9DA3-0F9FED2090E4} = {735532E5-FDEA-3547-9DA3-0F9FED2090E4}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZERO_CHECK", "ZERO_CHECK.vcxproj", "{735532E5-FDEA-3547-9DA3-0F9FED2090E4}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2AC16313-086E-3792-A4C3-F7DFE7255837}.Release|x64.ActiveCfg = Release|x64
+		{FAC31A10-030B-3BC5-8421-40B4D290B92B}.Release|x64.ActiveCfg = Release|x64
+		{FAC31A10-030B-3BC5-8421-40B4D290B92B}.Release|x64.Build.0 = Release|x64
+		{735532E5-FDEA-3547-9DA3-0F9FED2090E4}.Release|x64.ActiveCfg = Release|x64
+		{735532E5-FDEA-3547-9DA3-0F9FED2090E4}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
