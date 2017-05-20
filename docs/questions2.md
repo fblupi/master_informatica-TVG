@@ -8,7 +8,7 @@
 
 Respuesta
 
-**2.- Noise reduction filtering aims to reduce inhomogneities in medical images. Which does noise level depends on in medical imaging?**
+**2.- Noise reduction filtering aims to reduce inhomogeneities in medical images. Which does noise level depends on in medical imaging?**
 
 Respuesta
 
