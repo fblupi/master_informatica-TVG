@@ -66,15 +66,24 @@ El problema de los filtros estáticos es que no son adaptativos y característic
 
 **5.- The sigma-filter is a paradigmatic case of dynamic noise reduction filters. Describe it.**
 
-Respuesta
+El valor de cada voxel se reemplaza por el de la media de su vecindario si su diferencia con esta es menor que el valor dado por sigma. De esta forma los bordes entre tejidos se mantendrán por lo que se le puede clasificar dentro de los filtros adaptativos (dinámicos).
 
 **6.- Describe the threshold-based segmentation method and relates it with the segmentation methods provides by ITK.**
 
-Respuesta
+Partiendo de una semilla se extiende alrededor de esta fijando como voxel a segmentar aquel cuyo valor se encuentra entre los límites dados. Se parece al filtro *threshold* solo que se tiene en cuenta el vecindario.
+
+Para implementar este tipo de segmentación hemos utilizado los filtros ITK:
+
+- *Connected Threshold*
+- *Neighborhood Connected*
 
 **7.- Describe the procedure to obtain a watershed segmentation image, including the merging component.**
 
-Respuesta
+La idea de la segmentación *watershed* es ver la imagen como un mapa de colinas y valles. Los valores de elevación vienen dados por el valor de grises de los píxeles o su magnitud gradiente. Las *watershed* son las zonas que separan cuencas.
+
+En imágenes médicas con datos algo ruidosos podemos detectar el problema de sobre segmentación que se puede resolver usando un criterio de unión de regiones. Dando un valor de inundación, se inundarán todas las regiones que se encuentren por debajo de este valor de umbral.
+
+A veces esta inundación no examinada es insuficiente para segmentar las estructuras que queremos, la solución es que el usuario marque esas zonas de inclusión y exclusión a la estructura objetivo.
 
 **8.- Describe the different steps carried on by livewire edge-based segmentation approach.**
 
