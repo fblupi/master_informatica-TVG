@@ -1,0 +1,3 @@
+C:/Users/fboli/Documents/GitHub/master_informatica-TVG/project/filtering/build/CMakeFiles/Filtering.dir
+C:/Users/fboli/Documents/GitHub/master_informatica-TVG/project/filtering/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/fboli/Documents/GitHub/master_informatica-TVG/project/filtering/build/CMakeFiles/ZERO_CHECK.dir

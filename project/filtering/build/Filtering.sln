@@ -1,0 +1,33 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ALL_BUILD", "ALL_BUILD.vcxproj", "{2C051736-54EC-381C-AECD-886DF0D5E9B6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{13157D21-04ED-3641-8DAB-E19BA79225FD} = {13157D21-04ED-3641-8DAB-E19BA79225FD}
+		{723B2448-13BB-3B2C-9A1A-AA3CABAD3ACD} = {723B2448-13BB-3B2C-9A1A-AA3CABAD3ACD}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Filtering", "Filtering.vcxproj", "{13157D21-04ED-3641-8DAB-E19BA79225FD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{723B2448-13BB-3B2C-9A1A-AA3CABAD3ACD} = {723B2448-13BB-3B2C-9A1A-AA3CABAD3ACD}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZERO_CHECK", "ZERO_CHECK.vcxproj", "{723B2448-13BB-3B2C-9A1A-AA3CABAD3ACD}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C051736-54EC-381C-AECD-886DF0D5E9B6}.Release|x64.ActiveCfg = Release|x64
+		{13157D21-04ED-3641-8DAB-E19BA79225FD}.Release|x64.ActiveCfg = Release|x64
+		{13157D21-04ED-3641-8DAB-E19BA79225FD}.Release|x64.Build.0 = Release|x64
+		{723B2448-13BB-3B2C-9A1A-AA3CABAD3ACD}.Release|x64.ActiveCfg = Release|x64
+		{723B2448-13BB-3B2C-9A1A-AA3CABAD3ACD}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
