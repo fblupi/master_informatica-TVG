@@ -31,7 +31,9 @@ S = sum(mu_i*d_i)
 
 **5.- Which are the parameters of CT scanning and how influence the visual quality of the final 3D image (volume)**
 
-Respuesta
+- Resolución espacial (número de cortes, píxeles por corte y distancias entre voxeles): Si la resolución es más alta los datos serán más ruidosos si la dosis de radiación se mantiene.
+- Dosis de radiación: Si la dosis de radiación es mayor se conseguirá mejor radio señal-ruido.
+- *Gantry tilt* (sistema de rotación emitor/detector): Se puede adaptar el *gantry tilt* para un órgano específico a examinar.
 
 **6.- MRI exploits the occurrence of hydrogen nucleus in human tissue for image generation. The MRI device measures two times that take into account the time between *phase* (the protons are misaligned in a magnetic field) and *dephase* (the protons realign with the magnetic field). Looking at the slides titled "Magnetic Resonance Imaging: T1 and T2", can you describe how to discriminate between different tissue types using the plots of the bottom?**
 
