@@ -48,7 +48,28 @@ Con esta fórmula se podría diferir entre voxeles que están dentro o fuera de 
 
 **3.- Write a pseudocode for extracting an isosurface using a marching cubes from a volume dataset. The isovalue tau and the dataset will be specified as a parameter. You must approximate the normals using the central difference operator and suppose the classification step is previously done - you have colors and opacities in each voxel together with the true density value. The output will be the triangle mesh with color and opacity per vertex. You have not to write low-level code, just use functions (methods), named clearly, for each different processing.**
 
-Respuesta
+```java
+Mesh isosurface(Volume data, int isovalue) {
+  Mesh output;
+  for (int i = 1; i < data.size().x() - 2; i++) {
+    for (int j = 1; j < data.size().y() - 2; j++) {
+      for (int k = 1; k < data.size().z() - 2; k++) {
+        int[] values = new int[8];
+        data.getDensity(i - 1, j - 1, z - 1) - isovalue >= 0 ? values[0] = 1 : values[0] = 0;
+        data.getDensity(i - 1, j + 1, z - 1) - isovalue >= 0 ? values[1] = 1 : values[1] = 0;
+        data.getDensity(i + 1, j - 1, z - 1) - isovalue >= 0 ? values[2] = 1 : values[2] = 0;
+        data.getDensity(i + 1, j + 1, z - 1) - isovalue >= 0 ? values[3] = 1 : values[3] = 0;
+        data.getDensity(i - 1, j - 1, z + 1) - isovalue >= 0 ? values[4] = 1 : values[4] = 0;
+        data.getDensity(i - 1, j + 1, z + 1) - isovalue >= 0 ? values[5] = 1 : values[5] = 0;
+        data.getDensity(i + 1, j - 1, z + 1) - isovalue >= 0 ? values[6] = 1 : values[6] = 0;
+        data.getDensity(i + 1, j + 1, z + 1) - isovalue >= 0 ? values[7] = 1 : values[7] = 0;
+        output.addTriangles(getMarchingCubesTrianglesFromTable(values));
+      }
+    }
+  }
+  return output;
+}
+```
 
 ## Issues about Direct Volume Visualization (Rendering)
 
