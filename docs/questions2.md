@@ -87,8 +87,13 @@ A veces esta inundación no examinada es insuficiente para segmentar las estruct
 
 **8.- Describe the different steps carried on by livewire edge-based segmentation approach.**
 
-Respuesta
+- Se calculan costes desde un punto de control hasta la posición actual del ratón marcando el que tenga el coste más bajo.
+- Si el camino se desvía del borde del objetivo el ratón se mueve atrás hasta que el contorno sugerido coincide con el deseado y se añade un punto de control.
+- El nuevo punto de control se convierte en la semilla para el siguiente trazo.
+- Este proceso se repite hasta que se cierra la región del borde.
 
 **9.- How can you use morphologic operators to reduce noise? What kind of morphologic to take into account (transformation and similarity measure).**
 
-Respuesta
+Los operadores morfológicos simples son los de erosión y dilatación.
+
+Con estos dos operadores simples surgen otros dos: apertura (erosión + dilatación) y clausura (dilatación + erosión). Con la apertura se pueden eliminar pequeños objetos y bultos y con la clausura cerrar pequeños agujeros y muescas o cortes en V.
