@@ -6,7 +6,13 @@
 
 **1.- There are two main categories of spatial processing: *intensity transformations* and *spatial (kernel) filtering*. Describe the general idea in which they rely upon and the underlying general functions.**
 
-Respuesta
+Las transformaciones de intensidad operan sobre un solo pixel de la imagen mientras que el filtrado espacial lo hace sobre el vecindario de un pixel.
+
+La función general es:
+
+g(x,y) = T[f(x,y)]
+
+Donde f(x,y) es la imagen de entrada, g(x,y) la de salida y T un operador en f definido sobre un vecindario del punto (x,y).
 
 **2.- Noise reduction filtering aims to reduce inhomogeneities in medical images. Which does noise level depends on in medical imaging?**
 
