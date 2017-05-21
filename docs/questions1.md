@@ -37,8 +37,11 @@ S = sum(mu_i*d_i)
 
 **6.- MRI exploits the occurrence of hydrogen nucleus in human tissue for image generation. The MRI device measures two times that take into account the time between *phase* (the protons are misaligned in a magnetic field) and *dephase* (the protons realign with the magnetic field). Looking at the slides titled "Magnetic Resonance Imaging: T1 and T2", can you describe how to discriminate between different tissue types using the plots of the bottom?**
 
-Respuesta
+T2 se obtiene en la gráfica de relajación transversal al 37%. Esta línea cortará las gráficas de los distintos tejidos en un punto determinado. Lo mismo pasa con T1 y la relajación longitudinal al 63%.
 
 **7.- Compare CT imaging properties against to MRI imaging properties.**
 
-Respuesta
+- La MRI obtiene imágenes de menor resolución que la CT.
+- Son complementarios la MRI puede ser usado para fluidos y la CT para huesos.
+- La MRI da un mayor contraste en tejidos poco densos.
+- Los datos obtenidos con una CT son más entendibles por médicos mientras que los obtenidos con una MRI por radiólogos.
