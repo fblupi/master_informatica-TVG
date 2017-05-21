@@ -28,13 +28,23 @@ Respuesta
 
 **1.- Describe the isosurface specification model commonly used in polygonal isosurface extraction.**
 
-Respuesta
+Una isosuperficie se especifica con una superficie implícita en al que la diferencia de la función implícita y el isovalor es 0:
+
+i(x) = V(x) - tau
+
+Donde x es la posición del voxel y tau es el isovalor.
+
+Con esta fórmula se podría diferir entre voxeles que están dentro o fuera de la superficie:
+
+- Si i(x) < 0: está fuera
+- Si i(x) > 0: está dentro
+- Si i(x) = 0: forma parte de la isosuperficie
 
 **2.- Draw the 16 possible cases produced by Marching Squares algorithm indicating the equivalence classes that rotations and complement (inversion) produce. See the Fig. 4 for a guidance.**
 
 !["fig4"](img/questions3/2.2/fig4.png)
 
-Respuesta
+!["marching-squares"](img/questions3/2.2/marching-squares.png)
 
 **3.- Write a pseudocode for extracting an isosurface using a marching cubes from a volume dataset. The isovalue tau and the dataset will be specified as a parameter. You must approximate the normals using the central difference operator and suppose the classification step is previously done - you have colors and opacities in each voxel together with the true density value. The output will be the triangle mesh with color and opacity per vertex. You have not to write low-level code, just use functions (methods), named clearly, for each different processing.**
 
