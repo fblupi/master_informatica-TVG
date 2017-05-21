@@ -6,7 +6,7 @@
 
 **1.- The classification step in the volume visualization pipeline determines how each voxel contributes to the final image by means of transfer functions. Define the aim of a transfer function and list the four transfer functions commonly used in volume visualization.**
 
-Respuesta
+La función de transferencia mapea valores escalares de vóxeles a propiedades ópticas. Las cuatro funciones de transferencia serían las de los tres canales de color (RGB) y la de opacidad.
 
 **2.- Describe an example of how histograms can be useful in the classification step and propose a procedure and an interface that permits the interactive specification of this step. Look at the images below (Figs. 1, 2 and 3).**
 
@@ -16,7 +16,9 @@ Respuesta
 
 !["fig3"](img/questions3/1.2/fig3.png)
 
-Respuesta
+Los histogramas nos sirven para detectar los distintos materiales que se encuentran en una imagen. Cada uno de los picos puede corresponder a un material. El problema es que no todo es tan bonito ya que hay materiales cuyo rango de valores pueden solaparse. Por ejemplo: la sangre tiene valores de 30 a 45 HU y el músculo de 10 a 40 HU. No obstante, el histograma sigue siendo útil pues nos da pistas para definir las distintas partes de función de transferencia (color y opacidad).
+
+Para especificar la función de transferencia se le podría proveer al usuario de una gráfica interactiva (la que forma tanto la función de transferencia de color como de opacidad) con la función de transferencia mostrándose de fondo. Para la parte de color se podría mostrar, en lugar de la curva de la función para cada uno de los valores RGB el color del que se pintaría. Algo así como lo que aparece en la Figura 2. El usuario podría pinchar en la curva de la función para añadir puntos de control o editar los ya existentes. Mostrándose el efecto de los cambios al instante.
 
 **3.- Write a pseudocode for calculating Phong Illumination Model for each voxel of a volume dataset taking into account that the classification step has been finished - you have color per voxel! Don't consider the opacity assigned.**
 
