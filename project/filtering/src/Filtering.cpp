@@ -1,16 +1,17 @@
-#include "itkImage.h"
-#include "itkImageFileReader.h"
-#include "itkBinomialBlurImageFilter.h"
+#include <itkImage.h>
+#include <itkImageFileReader.h>
+#include <itkBinomialBlurImageFilter.h>
+#include <itkThresholdImageFilter.h>
 
-#include "QuickView.h"
+#include <QuickView.h>
 
 using namespace std;
 
 int main(int argc, char * argv[])
 {
-	if (argc < 3) {
+	if (argc < 2) {
 		cerr << "Usage: " << endl;
-		cerr << argv[0] << " inputImageFile repetitions" << endl;
+		cerr << argv[0] << " inputImageFile" << endl;
 		return EXIT_FAILURE;
 	}
 
@@ -20,29 +21,29 @@ int main(int argc, char * argv[])
 	typedef itk::Image<PixelType, Dimension> ImageType;
 
 	typedef itk::ImageFileReader<ImageType> ReaderType;
-
 	ReaderType::Pointer reader = ReaderType::New();
 	reader->SetFileName(argv[1]);
 
 	typedef itk::BinomialBlurImageFilter<ImageType, ImageType> BinomialBlurFilterType;
-	
 	BinomialBlurFilterType::Pointer binomialBlur = BinomialBlurFilterType::New();
 	binomialBlur->SetInput(reader->GetOutput());
-
-	int binomialBlurRepetitions = atoi(argv[2]);
-
-	binomialBlur->SetRepetitions(binomialBlurRepetitions);
+	binomialBlur->SetRepetitions(3);
 	binomialBlur->Update();
+
+	typedef itk::ThresholdImageFilter<ImageType> ThresholdImageFilterType;
+	ThresholdImageFilterType::Pointer segmentator = ThresholdImageFilterType::New();
+	segmentator->SetInput(binomialBlur->GetOutput());
+	segmentator->SetOutsideValue(0);
+	segmentator->ThresholdOutside(60, 200);
 
 	QuickView viewer;
 	viewer.SetNumberOfColumns(2);
 
 	string description;
-
 	description = "Original";
 	viewer.AddImage(reader->GetOutput(), true, description);
-	description = "Binomial Blur\nRepetitions = " + to_string(binomialBlurRepetitions);
-	viewer.AddImage(binomialBlur->GetOutput(), true, description);
+	description = "Filtered";
+	viewer.AddImage(segmentator->GetOutput(), true, description);
 	viewer.Visualize();
 	
 	return EXIT_SUCCESS;

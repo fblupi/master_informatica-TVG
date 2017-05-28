@@ -1,9 +1,10 @@
-#include "itkImage.h"
-#include "itkImageSeriesReader.h"
-#include "itkNumericSeriesFileNames.h"
-#include "itkBMPImageIO.h"
-#include "itkBinomialBlurImageFilter.h"
-#include "itkImageToVTKImageFilter.h"
+#include <itkImage.h>
+#include <itkImageSeriesReader.h>
+#include <itkNumericSeriesFileNames.h>
+#include <itkBMPImageIO.h>
+#include <itkBinomialBlurImageFilter.h>
+#include <itkImageToVTKImageFilter.h>
+#include <itkThresholdImageFilter.h>
 
 #include <vtkSmartPointer.h>
 #include <vtkRenderer.h>
@@ -30,6 +31,8 @@ int main(int argc, char * argv[])
 	const unsigned int FIRST = 1;
 	const unsigned int LAST = 250;
 	const unsigned int REPS = 3;
+	const unsigned int MIN = 60;
+	const unsigned int MAX = 200;
 
 	typedef unsigned char PixelType;
 	const unsigned int Dimension = 3;
@@ -54,16 +57,24 @@ int main(int argc, char * argv[])
 	cout << "Filtering..." << endl;
 
 	typedef itk::BinomialBlurImageFilter<ImageType, ImageType> BinomialBlurFilterType;
-	BinomialBlurFilterType::Pointer binomialBlur = BinomialBlurFilterType::New();
-	binomialBlur->SetInput(reader->GetOutput());
-	binomialBlur->SetRepetitions(3);
-	binomialBlur->Update();
+	BinomialBlurFilterType::Pointer filter = BinomialBlurFilterType::New();
+	filter->SetInput(reader->GetOutput());
+	filter->SetRepetitions(3);
+	filter->Update();
+
+	cout << "Segmentating..." << endl;
+
+	typedef itk::ThresholdImageFilter<ImageType> ThresholdImageFilterType;
+	ThresholdImageFilterType::Pointer segmentator = ThresholdImageFilterType::New();
+	segmentator->SetInput(filter->GetOutput());
+	segmentator->SetOutsideValue(0);
+	segmentator->ThresholdOutside(MIN, MAX);
 
 	cout << "Converting to VTK..." << endl;
 
 	typedef itk::ImageToVTKImageFilter<ImageType> ConnectorType;
 	ConnectorType::Pointer connector = ConnectorType::New();
-	connector->SetInput(reader->GetOutput());
+	connector->SetInput(segmentator->GetOutput());
 	connector->Update();
 
 	vtkSmartPointer<vtkImageData> imageData = vtkSmartPointer<vtkImageData>::New();
@@ -73,20 +84,19 @@ int main(int argc, char * argv[])
 	volumeMapper->SetInputData(imageData);
 
 	vtkSmartPointer<vtkColorTransferFunction>volumeColor = vtkSmartPointer<vtkColorTransferFunction>::New();
-	volumeColor->AddRGBPoint(0, 0.0, 0.0, 0.0);
-	volumeColor->AddRGBPoint(10, 1.0, 0.5, 0.3);
-	volumeColor->AddRGBPoint(20, 1.0, 0.5, 0.3);
-	volumeColor->AddRGBPoint(50, 1.0, 1.0, 0.9);
+	volumeColor->AddRGBPoint(0,   0.00, 0.00, 0.00);
+	volumeColor->AddRGBPoint(50,  0.95, 0.95, 0.85);
+	volumeColor->AddRGBPoint(200, 1.00, 1.00, 0.90);
 
 	vtkSmartPointer<vtkPiecewiseFunction> volumeScalarOpacity = vtkSmartPointer<vtkPiecewiseFunction>::New();
-	volumeScalarOpacity->AddPoint(0, 0.00);
-	volumeScalarOpacity->AddPoint(30, 0.80);
-	volumeScalarOpacity->AddPoint(50, 1.00);
+	volumeScalarOpacity->AddPoint(0,   0.00);
+	volumeScalarOpacity->AddPoint(50,  0.80);
+	volumeScalarOpacity->AddPoint(200, 1.00);
 
 	vtkSmartPointer<vtkPiecewiseFunction> volumeGradientOpacity = vtkSmartPointer<vtkPiecewiseFunction>::New();
-	volumeGradientOpacity->AddPoint(0, 0.0);
-	volumeGradientOpacity->AddPoint(100, 0.2);
-	volumeGradientOpacity->AddPoint(500, 0.5);
+	volumeGradientOpacity->AddPoint(0,    0.0);
+	volumeGradientOpacity->AddPoint(100,  0.2);
+	volumeGradientOpacity->AddPoint(500,  0.5);
 	volumeGradientOpacity->AddPoint(1000, 1.0);
 
 	vtkSmartPointer<vtkVolumeProperty> volumeProperty = vtkSmartPointer<vtkVolumeProperty>::New();
