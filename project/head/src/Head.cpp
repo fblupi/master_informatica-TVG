@@ -11,8 +11,7 @@
 #include <vtkRenderWindowInteractor.h>
 #include <vtkVolume16Reader.h>
 #include <vtkVolume.h>
-#include <vtkVolumeRayCastMapper.h>
-#include <vtkVolumeRayCastCompositeFunction.h>
+#include <vtkSmartVolumeMapper.h>
 #include <vtkVolumeProperty.h>
 #include <vtkColorTransferFunction.h>
 #include <vtkPiecewiseFunction.h>
@@ -28,7 +27,9 @@ int main(int argc, char * argv[])
 		return EXIT_FAILURE;
 	}
 
-	const unsigned int reps = 3;
+	const unsigned int FIRST = 1;
+	const unsigned int LAST = 250;
+	const unsigned int REPS = 3;
 
 	typedef unsigned char PixelType;
 	const unsigned int Dimension = 3;
@@ -38,61 +39,55 @@ int main(int argc, char * argv[])
 	typedef itk::NumericSeriesFileNames NameGeneratorType;
 	NameGeneratorType::Pointer nameGenerator = NameGeneratorType::New();
 	nameGenerator->SetSeriesFormat("t%d.bmp");
-	nameGenerator->SetStartIndex(1);
-	nameGenerator->SetEndIndex(250);
+	nameGenerator->SetStartIndex(FIRST);
+	nameGenerator->SetEndIndex(LAST);
 	nameGenerator->SetIncrementIndex(1);
 
-	cout << "Name generator done" << endl;
+	cout << "Reading files..." << endl;
 
 	typedef itk::ImageSeriesReader<ImageType> ReaderType;
 	ReaderType::Pointer reader = ReaderType::New();
 	reader->SetImageIO(itk::BMPImageIO::New());
 	reader->SetFileNames(nameGenerator->GetFileNames());
+	reader->Update();
 
-	cout << "Image Series done" << endl;
+	cout << "Filtering..." << endl;
 
 	typedef itk::BinomialBlurImageFilter<ImageType, ImageType> BinomialBlurFilterType;
 	BinomialBlurFilterType::Pointer binomialBlur = BinomialBlurFilterType::New();
 	binomialBlur->SetInput(reader->GetOutput());
-	binomialBlur->SetRepetitions(reps);
+	binomialBlur->SetRepetitions(3);
 	binomialBlur->Update();
 
-	cout << "Binomial Blur done" << endl;
+	cout << "Converting to VTK..." << endl;
 
 	typedef itk::ImageToVTKImageFilter<ImageType> ConnectorType;
 	ConnectorType::Pointer connector = ConnectorType::New();
 	connector->SetInput(reader->GetOutput());
+	connector->Update();
 
-	cout << "To VTK done" << endl;
+	vtkSmartPointer<vtkImageData> imageData = vtkSmartPointer<vtkImageData>::New();
+	imageData->ShallowCopy(connector->GetOutput());
 
-	vtkSmartPointer<vtkRenderer> ren = vtkSmartPointer<vtkRenderer>::New();
-	vtkSmartPointer<vtkRenderWindow> renWin = vtkSmartPointer<vtkRenderWindow>::New();
-	renWin->AddRenderer(ren);
-	vtkSmartPointer<vtkRenderWindowInteractor> iren = vtkSmartPointer<vtkRenderWindowInteractor>::New();
-	iren->SetRenderWindow(renWin);
-
-	vtkSmartPointer<vtkVolumeRayCastCompositeFunction> rayCastFunction = vtkSmartPointer<vtkVolumeRayCastCompositeFunction>::New();
-
-	vtkSmartPointer<vtkVolumeRayCastMapper> volumeMapper = vtkSmartPointer<vtkVolumeRayCastMapper>::New();
-	volumeMapper->SetInputData(connector->GetOutput());
-	volumeMapper->SetVolumeRayCastFunction(rayCastFunction);
+	vtkSmartPointer<vtkSmartVolumeMapper> volumeMapper = vtkSmartPointer<vtkSmartVolumeMapper>::New();
+	volumeMapper->SetInputData(imageData);
 
 	vtkSmartPointer<vtkColorTransferFunction>volumeColor = vtkSmartPointer<vtkColorTransferFunction>::New();
 	volumeColor->AddRGBPoint(0, 0.0, 0.0, 0.0);
-	volumeColor->AddRGBPoint(500, 1.0, 0.5, 0.3);
-	volumeColor->AddRGBPoint(1000, 1.0, 0.5, 0.3);
-	volumeColor->AddRGBPoint(1150, 1.0, 1.0, 0.9);
+	volumeColor->AddRGBPoint(10, 1.0, 0.5, 0.3);
+	volumeColor->AddRGBPoint(20, 1.0, 0.5, 0.3);
+	volumeColor->AddRGBPoint(50, 1.0, 1.0, 0.9);
 
 	vtkSmartPointer<vtkPiecewiseFunction> volumeScalarOpacity = vtkSmartPointer<vtkPiecewiseFunction>::New();
 	volumeScalarOpacity->AddPoint(0, 0.00);
-	volumeScalarOpacity->AddPoint(500, 0.15);
-	volumeScalarOpacity->AddPoint(1000, 0.15);
-	volumeScalarOpacity->AddPoint(1150, 0.85);
+	volumeScalarOpacity->AddPoint(30, 0.80);
+	volumeScalarOpacity->AddPoint(50, 1.00);
 
 	vtkSmartPointer<vtkPiecewiseFunction> volumeGradientOpacity = vtkSmartPointer<vtkPiecewiseFunction>::New();
 	volumeGradientOpacity->AddPoint(0, 0.0);
-	volumeGradientOpacity->AddPoint(90, 0.5);
-	volumeGradientOpacity->AddPoint(100, 1.0);
+	volumeGradientOpacity->AddPoint(100, 0.2);
+	volumeGradientOpacity->AddPoint(500, 0.5);
+	volumeGradientOpacity->AddPoint(1000, 1.0);
 
 	vtkSmartPointer<vtkVolumeProperty> volumeProperty = vtkSmartPointer<vtkVolumeProperty>::New();
 	volumeProperty->SetColor(volumeColor);
@@ -107,16 +102,24 @@ int main(int argc, char * argv[])
 	vtkSmartPointer<vtkVolume> volume = vtkSmartPointer<vtkVolume>::New();
 	volume->SetMapper(volumeMapper);
 	volume->SetProperty(volumeProperty);
-	ren->AddViewProp(volume);
 
-	vtkCamera *camera = ren->GetActiveCamera();
+	vtkSmartPointer<vtkRenderer> ren = vtkSmartPointer<vtkRenderer>::New();
+	ren->AddVolume(volume);
+	ren->SetBackground(0.1, 0.2, 0.3);
+
 	double *c = volume->GetCenter();
+	vtkSmartPointer<vtkCamera> camera = ren->GetActiveCamera();
 	camera->SetFocalPoint(c[0], c[1], c[2]);
 	camera->SetPosition(c[0] + 400, c[1], c[2]);
 	camera->SetViewUp(0, 0, -1);
 
+	vtkSmartPointer<vtkRenderWindow> renWin = vtkSmartPointer<vtkRenderWindow>::New();
+	renWin->AddRenderer(ren);
 	renWin->SetSize(640, 480);
+	renWin->Render();
 
+	vtkSmartPointer<vtkRenderWindowInteractor> iren = vtkSmartPointer<vtkRenderWindowInteractor>::New();
+	iren->SetRenderWindow(renWin);
 	iren->Initialize();
 	iren->Start();
 	
