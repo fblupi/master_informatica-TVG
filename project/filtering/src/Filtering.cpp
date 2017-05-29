@@ -27,14 +27,14 @@ int main(int argc, char * argv[])
 	typedef itk::BinomialBlurImageFilter<ImageType, ImageType> BinomialBlurFilterType;
 	BinomialBlurFilterType::Pointer binomialBlur = BinomialBlurFilterType::New();
 	binomialBlur->SetInput(reader->GetOutput());
-	binomialBlur->SetRepetitions(3);
+	binomialBlur->SetRepetitions(8);
 	binomialBlur->Update();
 
 	typedef itk::ThresholdImageFilter<ImageType> ThresholdImageFilterType;
 	ThresholdImageFilterType::Pointer segmentator = ThresholdImageFilterType::New();
 	segmentator->SetInput(binomialBlur->GetOutput());
 	segmentator->SetOutsideValue(0);
-	segmentator->ThresholdOutside(60, 200);
+	segmentator->ThresholdOutside(50, 200);
 
 	QuickView viewer;
 	viewer.SetNumberOfColumns(2);

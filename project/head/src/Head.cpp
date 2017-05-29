@@ -10,7 +10,6 @@
 #include <vtkRenderer.h>
 #include <vtkRenderWindow.h>
 #include <vtkRenderWindowInteractor.h>
-#include <vtkVolume16Reader.h>
 #include <vtkVolume.h>
 #include <vtkSmartVolumeMapper.h>
 #include <vtkVolumeProperty.h>
@@ -30,8 +29,8 @@ int main(int argc, char * argv[])
 
 	const unsigned int FIRST = 1;
 	const unsigned int LAST = 250;
-	const unsigned int REPS = 3;
-	const unsigned int MIN = 60;
+	const unsigned int REPS = 5;
+	const unsigned int MIN = 50;
 	const unsigned int MAX = 200;
 
 	typedef unsigned char PixelType;
@@ -69,6 +68,7 @@ int main(int argc, char * argv[])
 	segmentator->SetInput(filter->GetOutput());
 	segmentator->SetOutsideValue(0);
 	segmentator->ThresholdOutside(MIN, MAX);
+	segmentator->Update();
 
 	cout << "Converting to VTK..." << endl;
 
@@ -85,19 +85,24 @@ int main(int argc, char * argv[])
 
 	vtkSmartPointer<vtkColorTransferFunction>volumeColor = vtkSmartPointer<vtkColorTransferFunction>::New();
 	volumeColor->AddRGBPoint(0,   0.00, 0.00, 0.00);
+	volumeColor->AddRGBPoint(20,  1.00, 0.50, 0.30);
+	volumeColor->AddRGBPoint(40,  1.00, 0.50, 0.30);
 	volumeColor->AddRGBPoint(50,  0.95, 0.95, 0.85);
 	volumeColor->AddRGBPoint(200, 1.00, 1.00, 0.90);
 
 	vtkSmartPointer<vtkPiecewiseFunction> volumeScalarOpacity = vtkSmartPointer<vtkPiecewiseFunction>::New();
 	volumeScalarOpacity->AddPoint(0,   0.00);
+	volumeScalarOpacity->AddPoint(20,  0.10);
+	volumeScalarOpacity->AddPoint(40,  0.15);
+	volumeScalarOpacity->AddPoint(49,  0.15);
 	volumeScalarOpacity->AddPoint(50,  0.80);
 	volumeScalarOpacity->AddPoint(200, 1.00);
 
 	vtkSmartPointer<vtkPiecewiseFunction> volumeGradientOpacity = vtkSmartPointer<vtkPiecewiseFunction>::New();
-	volumeGradientOpacity->AddPoint(0,    0.0);
-	volumeGradientOpacity->AddPoint(100,  0.2);
-	volumeGradientOpacity->AddPoint(500,  0.5);
-	volumeGradientOpacity->AddPoint(1000, 1.0);
+	volumeGradientOpacity->AddPoint(0,   0.0);
+	volumeGradientOpacity->AddPoint(20,  0.1);
+	volumeGradientOpacity->AddPoint(50,  0.5);
+	volumeGradientOpacity->AddPoint(100, 1.0);
 
 	vtkSmartPointer<vtkVolumeProperty> volumeProperty = vtkSmartPointer<vtkVolumeProperty>::New();
 	volumeProperty->SetColor(volumeColor);
