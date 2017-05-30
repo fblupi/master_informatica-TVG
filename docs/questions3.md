@@ -22,7 +22,21 @@ Para especificar la función de transferencia se le podría proveer al usuario d
 
 **3.- Write a pseudocode for calculating Phong Illumination Model for each voxel of a volume dataset taking into account that the classification step has been finished - you have color per voxel! Don't consider the opacity assigned.**
 
-Respuesta
+```java
+ColorRGB phong(Voxel voxel, Light[] lights, View view):
+  voxel.setNormal(centralDifferences(voxel));
+  ColorRGB iAmb = kAmb * cAmb * voxel.getDiffColor();
+  ColorRGB sum = 0;
+  for (Light light: lights) {
+    ColorRGB iDiff = kDiff * light.getColor() * voxel.getDiffColor() * 
+             dotProduct(voxel.getNormal(), light.getDirection());
+    Vector perfectReflector = mirror(voxel.getNormal(), light.getDirection());
+    ColorRGB iSpec = kSpec * light.getColor() * voxel.getSpecColor() * 
+             pow(dotProduct(perfectReflector, view.getPosition()), m);
+    sum += iDiff + iSpec;
+  }
+  return iAmb + cAtt * sum;
+```
 
 ## Issues about Indirect Volume Visualization
 
