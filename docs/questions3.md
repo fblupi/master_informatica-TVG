@@ -26,7 +26,7 @@ Para especificar la función de transferencia se le podría proveer al usuario d
 ColorRGB phong(Voxel voxel, Light[] lights, View view):
   voxel.setNormal(centralDifferences(voxel));
   ColorRGB iAmb = kAmb * cAmb * voxel.getDiffColor();
-  ColorRGB sum = 0;
+  ColorRGB sum = new ColorRGB();
   for (Light light: lights) {
     ColorRGB iDiff = kDiff * light.getColor() * voxel.getDiffColor() * 
              dotProduct(voxel.getNormal(), light.getDirection());
