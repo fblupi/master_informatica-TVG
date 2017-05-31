@@ -44,15 +44,17 @@ ColorRGB phong(Voxel voxel, Light[] lights, View view):
 
 Una isosuperficie se especifica con una superficie implícita en al que la diferencia de la función implícita y el isovalor es 0:
 
+```
 i(x) = V(x) - tau
+```
 
-Donde x es la posición del voxel y tau es el isovalor.
+Donde `x` es la posición del voxel y `tau` es el isovalor.
 
 Con esta fórmula se podría diferir entre voxeles que están dentro o fuera de la superficie:
 
-- Si i(x) < 0: está fuera
-- Si i(x) > 0: está dentro
-- Si i(x) = 0: forma parte de la isosuperficie
+- Si `i(x) < 0`: está fuera
+- Si `i(x) > 0`: está dentro
+- Si `i(x) = 0`: forma parte de la isosuperficie
 
 **2.- Draw the 16 possible cases produced by Marching Squares algorithm indicating the equivalence classes that rotations and complement (inversion) produce. See the Fig. 4 for a guidance.**
 
@@ -95,7 +97,7 @@ En el caso de *ray-casting* se lanza un rayo por cada píxel que atraviesa la es
 
 La composición se basa en el operador over que es asociativo, lo que significa que el orden de las evaluaciones puede cambiarse obteniendo el mismo resultado, por eso se puede realizar en ambas direcciones.
 
-El *back to front* se realiza desde el final del volumen hasta el píxel desde donde se lanza en rayo, (en dirección hacia el punto de vista). El valor para la posición *k* se calcula como el valor previo multiplicado por la transparencia más el color en el punto *k*. El valor inicial será el color ambiente de la luz de fondo:
+El *back to front* se realiza desde el final del volumen hasta el píxel desde donde se lanza en rayo, (en dirección hacia el punto de vista). El valor para la posición `k` se calcula como el valor previo multiplicado por la transparencia más el color en el punto `k`. El valor inicial será el color ambiente de la luz de fondo:
 
 ```
 I_k = I_{k-1} * t_k + C_k,  k = 1, ... , n-1

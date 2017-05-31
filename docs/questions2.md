@@ -10,9 +10,11 @@ Las transformaciones de intensidad operan sobre un solo pixel de la imagen mient
 
 La función general es:
 
+```
 g(x,y) = T[f(x,y)]
+```
 
-Donde f(x,y) es la imagen de entrada, g(x,y) la de salida y T un operador en f definido sobre un vecindario del punto (x,y).
+Donde `f(x,y)` es la imagen de entrada, `g(x,y)` la de salida y `T` un operador en `f` definido sobre un vecindario del punto `(x,y)`.
 
 **2.- Noise reduction filtering aims to reduce inhomogeneities in medical images. Which does noise level depends on in medical imaging?**
 

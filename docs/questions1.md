@@ -14,13 +14,17 @@ Con los *hard beam x-rays* se obtienen materiales muy densos como pueden ser los
 
 **3.- Describe the physical model of attenuation for X-rays.**
 
-Tras el paciente se coloca una hoja que captura la intensidad que le va llegando en cada punto. La intensidad resultante depende tanto de la anchura del material como de un coeficiente mu que caracteriza la atenuaación S. La intensidad inicial I_0 cae exponencialmente conforme se incrementa la distancia d:
+Tras el paciente se coloca una hoja que captura la intensidad que le va llegando en cada punto. La intensidad resultante depende tanto de la anchura del material como de un coeficiente mu que caracteriza la atenuaación S. La intensidad inicial `I_0` cae exponencialmente conforme se incrementa la distancia d:
 
-I(d) = I_0 * e^(-mu*d)
+```
+I(d) = I_0 * e^(-mu * d)
+```
 
-Por lo tanto, la atenuación será la sumatoria de los productos mu*d ya que distintos tipos de materiales se ven involucrados en el cómputo:
+Por lo tanto, la atenuación será la sumatoria de los productos `mu * d` ya que distintos tipos de materiales se ven involucrados en el cómputo:
 
-S = sum(mu_i*d_i)
+```
+S = sum(mu_i * d_i)
+```
 
 **4.- Enumerate the properties of the images coming from X-ray Rotational Angiography.**
 
