@@ -89,8 +89,15 @@ Mesh isosurface(Volume data, int isovalue) {
 
 **1.- Describe the main idea which direct volume rendering relies on. Base your explanation in the discretized volume rendering equation.**
 
-Respuesta
+En el caso de *ray-casting* se lanza un rayo por cada píxel que atraviesa la escena y va acumulando los valores de opacidad y color de los vóxeles con los que incide obteniendo un color final que será el que se utilizará para colorear ese píxel.
 
 **2.- Explain why compositing can be done in two directions and explain *back to front compositing*.**
 
-Respuesta
+La composición se basa en el operador over que es asociativo, lo que significa que el orden de las evaluaciones puede cambiarse obteniendo el mismo resultado, por eso se puede realizar en ambas direcciones.
+
+El *back to front* se realiza desde el final del volumen hasta el píxel desde donde se lanza en rayo, (en dirección hacia el punto de vista). El valor para la posición *k* se calcula como el valor previo multiplicado por la transparencia más el color en el punto *k*. El valor inicial será el color ambiente de la luz de fondo:
+
+```
+I_k = I_{k-1} * t_k + C_k,  k = 1, ... , n-1
+I_0 = ambient background light
+```
