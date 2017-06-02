@@ -1,3 +1,0 @@
-C:/Users/fboli/Documents/GitHub/master_informatica-TVG/filters/mean-and-median/build/CMakeFiles/MeanAndMedian.dir
-C:/Users/fboli/Documents/GitHub/master_informatica-TVG/filters/mean-and-median/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/fboli/Documents/GitHub/master_informatica-TVG/filters/mean-and-median/build/CMakeFiles/ZERO_CHECK.dir
