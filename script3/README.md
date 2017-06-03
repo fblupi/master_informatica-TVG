@@ -1,4 +1,4 @@
-# Filtering with ITK
+# Filtering with ITK (I)
 
 ## Task 1
 
