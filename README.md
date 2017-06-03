@@ -29,4 +29,4 @@ Francisco Javier Bolívar Lupiáñez
 
 ## Licencia
 
-[GNU GPL v3](https://github.com/fblupi/master_informatica-SSBW/blob/master/LICENSE)
+[GNU GPL v3](https://github.com/fblupi/master_informatica-TVG/blob/master/LICENSE)
