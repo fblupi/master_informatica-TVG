@@ -1,6 +1,6 @@
 # Técnicas de Visualización Gráfica (Aplicaciones Médicas)
 
-Prácticas de la asignatura Técnicas de Visualización Gráfica (Aplicaciones Médicas) del Máster de Ingeniería Informática de la UGR
+Repositorio de la asignatura Técnicas de Visualización Gráfica (Aplicaciones Médicas) del Máster de Ingeniería Informática de la UGR
 
 ## Contenido
 
