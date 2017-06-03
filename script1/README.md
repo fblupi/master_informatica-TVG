@@ -16,7 +16,7 @@ In this task we will construct a program to extract information from a image tha
 
 ## Task 4
 
-Try to generate an executable from the code shown in the listing above and note; how to manually create an itk::Image, how to use an Image pointer to "raw" access to the Image data generated from a filter, and how to use iterators.
+Try to generate an executable from the code shown in the listing below and note; how to manually create an itk::Image, how to use an Image pointer to "raw" access to the Image data generated from a filter, and how to use iterators.
 
 ```c++
 // Create an instance of the Image class
